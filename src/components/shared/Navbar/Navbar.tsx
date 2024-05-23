@@ -22,16 +22,11 @@ export default function App() {
     "Dashboard",
     "Activity",
     "Analytics",
-    "System",
-    "Deployments",
-    "My Settings",
-    "Team Settings",
-    "Help & Feedback",
     "Log Out",
   ];
 
   return (
-    <Navbar maxWidth="2xl" className="container">
+    <Navbar maxWidth="2xl" className="container mx-auto ">
       <NavbarBrand>
         <Link className="flex" href="/">
           <h1 className="font-bold text-2xl text-inherit">

@@ -4,7 +4,7 @@ import BannerImage from "./BannerImage";
 
 export default function Banner() {
   return (
-    <Card className="py-4 flex px-4" shadow="none">
+    <Card className="lg:py-10 py-4 flex lg:px-4 px-3" shadow="none">
       <CardBody className="overflow-visible py-2 ">
         <div className="lg:flex md:flex items-center justify-between gap-10 w-full">
           <BannerImage />
@@ -13,7 +13,7 @@ export default function Banner() {
               Find Your Perfect <span className="text-red-500">Pet</span>{" "}
               Companion Today!
             </h1>
-            <h4 className=" text-xl text-gray-500 my-5">
+            <h4 className=" lg:text-xl text-md text-gray-500 my-5">
               Explore our extensive network of shelters and rescues to find your
               new best friend. With our easy-to-use platform, you can browse,
               connect, and adopt your ideal pet with just a few clicks. Start
