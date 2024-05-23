@@ -31,7 +31,7 @@ export default function App() {
   ];
 
   return (
-    <Navbar maxWidth="2xl">
+    <Navbar maxWidth="2xl" className="container">
       <NavbarBrand>
         <Link className="flex" href="/">
           <h1 className="font-bold text-2xl text-inherit">
@@ -41,6 +41,11 @@ export default function App() {
       </NavbarBrand>
 
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
+        <NavbarItem>
+          <Link color="foreground" href="/">
+            Home
+          </Link>
+        </NavbarItem>
         <NavbarItem>
           <Link color="foreground" href="/about">
             About Us
