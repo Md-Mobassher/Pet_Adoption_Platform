@@ -4,7 +4,7 @@ import { Input } from "@nextui-org/input";
 
 const SearchPets = () => {
   return (
-    <div className="flex justify-center items-center mb-6 gap-5 px-4">
+    <div className="flex justify-center items-center mb-6 lg:gap-5 md:gap-3 gap-1 px-4">
       <Input
         type="text"
         label="Pet type"

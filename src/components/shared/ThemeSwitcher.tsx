@@ -1,7 +1,7 @@
-// app/components/ThemeSwitcher.tsx
 "use client";
 
 import { Switch } from "@nextui-org/switch";
+import { MoonIcon, SunIcon } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 
@@ -19,6 +19,13 @@ export function ThemeSwitcher() {
     <Switch
       isSelected={theme === "dark" ? true : false}
       onValueChange={(e) => setTheme(e ? "dark" : "light")}
+      thumbIcon={({ isSelected, className }) =>
+        isSelected ? (
+          <SunIcon className={className} />
+        ) : (
+          <MoonIcon className={className} />
+        )
+      }
     />
   );
 }

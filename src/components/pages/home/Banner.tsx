@@ -10,7 +10,7 @@ export default function Banner() {
           <BannerImage />
           <div className="lg:w-2/5 md:w-2/3">
             <h1 className="lg:text-5xl md:text-4xl text-3xl lg:text-start md:text-start text-center font-bold mb-2 text-default-800 ">
-              Find Your Perfect <span className="text-red-500">Pet</span>{" "}
+              Find Your Perfect <span className="text-primary">Pet</span>{" "}
               Companion Today!
             </h1>
             <h4 className=" lg:text-xl text-md text-gray-500 my-5">
@@ -19,7 +19,9 @@ export default function Banner() {
               connect, and adopt your ideal pet with just a few clicks. Start
               your journey towards a loving home and a happy pet now!
             </h4>
-            <BannerButton />
+            <div className="flex lg:justify-start md:justify-start justify-center">
+              <BannerButton />
+            </div>
           </div>
         </div>
       </CardBody>

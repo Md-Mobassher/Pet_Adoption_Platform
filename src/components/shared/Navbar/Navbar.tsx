@@ -1,6 +1,5 @@
 "use client";
 
-import { Button } from "@nextui-org/button";
 import {
   Navbar,
   NavbarBrand,
@@ -13,6 +12,7 @@ import {
 import Link from "next/link";
 import { useState } from "react";
 import { ThemeSwitcher } from "../ThemeSwitcher";
+import { Cat } from "lucide-react";
 
 export default function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -28,9 +28,10 @@ export default function App() {
   return (
     <Navbar maxWidth="2xl" className="container mx-auto ">
       <NavbarBrand>
-        <Link className="flex" href="/">
-          <h1 className="font-bold text-2xl text-inherit">
-            Pet Adoption Platform
+        <Link className="flex justify-start items-center" href="/">
+          <Cat className="size-10 mr-2 text-primary" />
+          <h1 className="font-bold lg:text-3xl text-2xl text-inherit">
+            <span className="text-primary">Pet</span> Adoption Platform
           </h1>
         </Link>
       </NavbarBrand>
