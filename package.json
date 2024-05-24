@@ -14,15 +14,18 @@
     "@nextui-org/input": "^2.1.21",
     "@nextui-org/navbar": "^2.0.30",
     "@nextui-org/select": "^2.1.27",
+    "@nextui-org/spinner": "^2.0.28",
     "@nextui-org/switch": "^2.0.28",
     "@nextui-org/system": "^2.1.2",
     "@nextui-org/theme": "^2.2.3",
     "framer-motion": "^11.2.5",
+    "jwt-decode": "^4.0.0",
     "lucide-react": "^0.379.0",
     "next": "14.2.3",
     "next-themes": "^0.3.0",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "sonner": "^1.4.41"
   },
   "devDependencies": {
     "@types/node": "^20",
