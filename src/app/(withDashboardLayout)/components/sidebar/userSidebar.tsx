@@ -1,12 +1,4 @@
-import {
-  Car,
-  Cat,
-  Cog,
-  DollarSign,
-  History,
-  Home,
-  User2Icon,
-} from "lucide-react";
+import { Cat, DollarSign, Home, User2Icon } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { SidebarItem } from "./sidebar-item";
@@ -30,7 +22,7 @@ export const SidebarWrapper = () => {
           {" "}
           <Link className="flex" href="/">
             <Cat className="size-8 mr-2 text-primary" />
-            <h1 className="font-bold lg:text-3xl text-2xl text-inherit">
+            <h1 className="font-bold text-xl text-inherit">
               <span className="text-primary">Pet</span> Adoption
             </h1>
           </Link>

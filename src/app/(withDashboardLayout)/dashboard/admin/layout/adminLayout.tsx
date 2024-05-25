@@ -1,5 +1,6 @@
 "use client";
 
+import { NavbarWrapper } from "@/app/(withDashboardLayout)/components/dashboardNavbar/dashboardNavbar";
 import { AdminSidebarWrapper } from "@/app/(withDashboardLayout)/components/sidebar/adminSidebar";
 
 interface Props {
@@ -10,7 +11,7 @@ export const Layout = ({ children }: Props) => {
   return (
     <section className="flex">
       <AdminSidebarWrapper />
-      <div>{children}</div>
+      <NavbarWrapper>{children}</NavbarWrapper>
     </section>
   );
 };

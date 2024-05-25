@@ -247,6 +247,18 @@
     "@react-types/overlays" "^3.8.5"
     "@react-types/shared" "^3.22.1"
 
+"@nextui-org/avatar@^2.0.27":
+  version "2.0.27"
+  resolved "https://registry.yarnpkg.com/@nextui-org/avatar/-/avatar-2.0.27.tgz#ed664582d8f1a8d6ab7b183e27741ad4da593f7a"
+  integrity sha512-rmEWhzg7bHOYWCvcFWBjex80aRtnLE7QyHWTHr9+KtOQRJRtv33Kxy5JfDcCQ6vKBz/ZPAWJ76ftUaba3yvXjQ==
+  dependencies:
+    "@nextui-org/react-utils" "2.0.13"
+    "@nextui-org/shared-utils" "2.0.5"
+    "@nextui-org/use-image" "2.0.5"
+    "@react-aria/focus" "^3.16.2"
+    "@react-aria/interactions" "^3.21.1"
+    "@react-aria/utils" "^3.23.2"
+
 "@nextui-org/button@2.0.31", "@nextui-org/button@^2.0.31":
   version "2.0.31"
   resolved "https://registry.npmjs.org/@nextui-org/button/-/button-2.0.31.tgz"
@@ -288,6 +300,21 @@
     "@nextui-org/shared-utils" "2.0.5"
     "@nextui-org/system-rsc" "2.1.1"
     "@react-types/shared" "^3.22.1"
+
+"@nextui-org/dropdown@^2.1.23":
+  version "2.1.23"
+  resolved "https://registry.yarnpkg.com/@nextui-org/dropdown/-/dropdown-2.1.23.tgz#8ca87d598a92f1dd42b051d75b7b3f13074fbed1"
+  integrity sha512-4wAzUbKztvuzzuJcLuDKhvnxB++EQ2aATbCdnfcBA5IyBxj6k4lbalgmSQxtx6D4dm5iJeiOWCJHRZgsIqkxRg==
+  dependencies:
+    "@nextui-org/menu" "2.0.22"
+    "@nextui-org/popover" "2.1.21"
+    "@nextui-org/react-utils" "2.0.13"
+    "@nextui-org/shared-utils" "2.0.5"
+    "@react-aria/focus" "^3.16.2"
+    "@react-aria/menu" "^3.13.1"
+    "@react-aria/utils" "^3.23.2"
+    "@react-stately/menu" "^3.6.1"
+    "@react-types/menu" "^3.9.7"
 
 "@nextui-org/framer-utils@2.0.18":
   version "2.0.18"
@@ -331,6 +358,26 @@
     "@react-aria/listbox" "^3.11.5"
     "@react-aria/utils" "^3.23.2"
     "@react-stately/list" "^3.10.3"
+    "@react-types/menu" "^3.9.7"
+    "@react-types/shared" "^3.22.1"
+
+"@nextui-org/menu@2.0.22":
+  version "2.0.22"
+  resolved "https://registry.yarnpkg.com/@nextui-org/menu/-/menu-2.0.22.tgz#bcfba6fb23bd396142b4481f19f5f0c4a606414b"
+  integrity sha512-zU1MbyDPk0QNAVZUSDJSMmdVxpFzWHyiLqOtS+b+kZLdn0va+QBR6LPj237PhyQueChNyz/y8eDDbJ0D6bWf/g==
+  dependencies:
+    "@nextui-org/aria-utils" "2.0.18"
+    "@nextui-org/divider" "2.0.27"
+    "@nextui-org/react-utils" "2.0.13"
+    "@nextui-org/shared-utils" "2.0.5"
+    "@nextui-org/use-aria-menu" "2.0.2"
+    "@nextui-org/use-is-mobile" "2.0.7"
+    "@react-aria/focus" "^3.16.2"
+    "@react-aria/interactions" "^3.21.1"
+    "@react-aria/menu" "^3.13.1"
+    "@react-aria/utils" "^3.23.2"
+    "@react-stately/menu" "^3.6.1"
+    "@react-stately/tree" "^3.7.6"
     "@react-types/menu" "^3.9.7"
     "@react-types/shared" "^3.22.1"
 
@@ -508,6 +555,21 @@
     "@react-types/button" "^3.9.2"
     "@react-types/shared" "^3.22.1"
 
+"@nextui-org/use-aria-menu@2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@nextui-org/use-aria-menu/-/use-aria-menu-2.0.2.tgz#5d06b4f75d3bc937f289a17b59cdd20975728f13"
+  integrity sha512-YV/tp246bWTfZIa6eDnN19Z0VkOB5/SP9qlLtigY0a2lPuGQ/6o3LpcWZxQPOgLwBd6PQwUgNe/RakOO3rRrAQ==
+  dependencies:
+    "@react-aria/i18n" "^3.10.2"
+    "@react-aria/interactions" "^3.21.1"
+    "@react-aria/menu" "^3.13.1"
+    "@react-aria/selection" "^3.17.5"
+    "@react-aria/utils" "^3.23.2"
+    "@react-stately/collections" "^3.10.5"
+    "@react-stately/tree" "^3.7.6"
+    "@react-types/menu" "^3.9.7"
+    "@react-types/shared" "^3.22.1"
+
 "@nextui-org/use-aria-multiselect@2.1.5":
   version "2.1.5"
   resolved "https://registry.npmjs.org/@nextui-org/use-aria-multiselect/-/use-aria-multiselect-2.1.5.tgz"
@@ -545,6 +607,13 @@
   integrity sha512-0YqUAe/b9aZftUQOH7sWqBMJHGLyC2Q/ixFyjq8Q1TijrqEyGESGQ2tm0+FHytI04drV+mnsbf6+q2QIKyqGSg==
   dependencies:
     "@nextui-org/shared-utils" "2.0.5"
+
+"@nextui-org/use-image@2.0.5":
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/@nextui-org/use-image/-/use-image-2.0.5.tgz#1482fed65e152e84fe742658e6e6f42e08547608"
+  integrity sha512-FAMyvZS9XSNLqHEmU6xykMgwIFJj/V9/JpTiZAQziz2wqMiUONIBpYpGOlI+pPBNlhCkw62KHm/19vHW49FWhA==
+  dependencies:
+    "@nextui-org/use-safe-layout-effect" "2.0.5"
 
 "@nextui-org/use-is-mobile@2.0.7":
   version "2.0.7"
@@ -868,7 +937,7 @@
     "@react-types/checkbox" "^3.8.1"
     "@swc/helpers" "^0.5.0"
 
-"@react-stately/tree@^3.8.1":
+"@react-stately/tree@^3.7.6", "@react-stately/tree@^3.8.1":
   version "3.8.1"
   resolved "https://registry.npmjs.org/@react-stately/tree/-/tree-3.8.1.tgz"
   integrity sha512-LOdkkruJWch3W89h4B/bXhfr0t0t1aRfEp+IMrrwdRAl23NaPqwl5ILHs4Xu5XDHqqhg8co73pHrJwUyiTWEjw==

@@ -172,7 +172,9 @@ const RegisterForm = () => {
           </Link>
         </div>
         <div className="flex justify-end mt-5">
-          <Button type="submit">Register</Button>
+          <Button type="submit" color="primary" size="lg">
+            Register
+          </Button>
         </div>
       </form>
     </div>

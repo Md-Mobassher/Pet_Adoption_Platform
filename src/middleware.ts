@@ -2,7 +2,7 @@ import { jwtDecode } from "jwt-decode";
 import { cookies } from "next/headers";
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
-import { logOut } from "./app/(withCommonLayout)/actions/auth";
+
 type Role = keyof typeof roleBasedPrivateRoutes;
 
 const AuthRoutes = ["/login", "/register"];
