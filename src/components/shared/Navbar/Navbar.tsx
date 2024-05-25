@@ -13,15 +13,31 @@ import Link from "next/link";
 import { useState } from "react";
 import { ThemeSwitcher } from "../ThemeSwitcher";
 import { Cat } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { useAuth } from "@/lib/Providers/AuthProvider";
+import { logOut } from "@/app/(withCommonLayout)/actions/auth";
+import { Button } from "@nextui-org/button";
 
-export default function App() {
+export default function NavigationBar({ user }: any) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const router = useRouter();
+  const { setUser } = useAuth();
+  const routeMap: Record<string, string> = {
+    USER: "/dashboard",
+    ADMIN: "/dashboard/admin",
+  };
+  const logOutUser = async () => {
+    await logOut();
+    setUser(null);
+    router.push("/");
+  };
 
   const menuItems = [
-    "Profile",
+    "Home",
+    "About",
+    "Pets",
     "Dashboard",
-    "Activity",
-    "Analytics",
+    "My Profile",
     "Log Out",
   ];
 
@@ -47,27 +63,21 @@ export default function App() {
             About Us
           </Link>
         </NavbarItem>
-        <NavbarItem isActive>
-          <Link href="my-profile" aria-current="page">
-            My Profile
+        <NavbarItem>
+          <Link href="/pets" color="foreground">
+            Pets
           </Link>
         </NavbarItem>
-        {/* <NavbarItem>
+        <NavbarItem>
           {user && <Link href={routeMap[user?.role]}>Dashboard</Link>}
-        </NavbarItem> */}
+        </NavbarItem>
       </NavbarContent>
       <NavbarContent justify="end">
         <NavbarItem>
           <ThemeSwitcher />
         </NavbarItem>
 
-        <NavbarItem className="hidden lg:flex">
-          <Link href="/login">Login</Link>
-        </NavbarItem>
-        <NavbarItem className="hidden lg:flex">
-          <Link href="/register">Register</Link>
-        </NavbarItem>
-        {/* {user ? (
+        {user ? (
           <NavbarItem>
             <Button onClick={logOutUser} color="primary" variant="flat">
               Logout
@@ -75,9 +85,13 @@ export default function App() {
           </NavbarItem>
         ) : (
           <NavbarItem className="hidden lg:flex">
-            <Link href="/login">Login</Link>
+            <Link href="/login">
+              <Button onClick={logOutUser} color="primary" variant="flat">
+                Login
+              </Button>
+            </Link>
           </NavbarItem>
-        )} */}
+        )}
       </NavbarContent>
       <NavbarContent className="sm:hidden" justify="end">
         <NavbarMenuToggle

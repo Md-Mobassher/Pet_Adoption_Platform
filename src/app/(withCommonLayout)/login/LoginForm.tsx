@@ -13,7 +13,7 @@ export default function LoginForm() {
   const [state, formAction] = useFormState(loginUser, null);
 
   useEffect(() => {
-    console.log(state);
+    // console.log(state);
     if (state && state?.success) {
       toast.success(state?.message, { id: 1, duration: 3000 });
       ref.current!.reset();
