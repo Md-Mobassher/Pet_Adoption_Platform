@@ -44,6 +44,33 @@ export async function signUpUser(data: Record<string, any>) {
   }
 }
 
+export async function changePassword(data: Record<string, any>) {
+  try {
+    const accessToken = cookies().get("accessToken")?.value;
+
+    if (!accessToken) {
+      return logOut();
+    }
+
+    const formattedData = JSON.stringify(data);
+    const res = await fetch(`${process.env.serverUrl}/auth/change-password`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `${accessToken}`,
+      },
+      body: formattedData,
+      credentials: "include",
+    });
+
+    const result = await res.json();
+    console.log(result);
+    return result;
+  } catch (error) {
+    throw error;
+  }
+}
+
 export async function refreshTokenGen() {
   const accessToken = cookies().get("accessToken")?.value;
   let decodedData = null;
@@ -90,6 +117,7 @@ export const logOut = async () => {
   cookies().delete("accessToken");
   cookies().delete("refreshToken");
 };
+
 export const getCooke = async (cooke: string) => {
   return cookies().get(cooke)?.value;
 };

@@ -1,11 +1,9 @@
 import {
-  Car,
   Cat,
   CatIcon,
-  Cog,
-  DollarSign,
-  History,
   Home,
+  KeyIcon,
+  ParenthesesIcon,
   User,
 } from "lucide-react";
 import Link from "next/link";
@@ -31,7 +29,7 @@ export const AdminSidebarWrapper = () => {
           {" "}
           <Link className="flex" href="/">
             <Cat className="size-8 mr-2 text-primary" />
-            <h1 className="font-bold lg:text-3xl text-2xl text-inherit">
+            <h1 className="font-bold text-xl text-inherit">
               <span className="text-primary">Pet</span> Adoption
             </h1>
           </Link>
@@ -65,10 +63,10 @@ export const AdminSidebarWrapper = () => {
                 href="/dashboard/admin/Edit-pet"
               />
               <SidebarItem
-                isActive={pathname === "/dashboard/admin/edit-pet"}
-                title="Edit Pet"
-                icon={<CatIcon />}
-                href="/dashboard/admin/Edit-pet"
+                isActive={pathname === "/dashboard/admin/change-password"}
+                title="Change Password"
+                icon={<KeyIcon />}
+                href="/dashboard/admin/change-password"
               />
             </SidebarMenu>
           </div>

@@ -27,7 +27,8 @@ const signUpSchema = z
 const RegisterForm = () => {
   const formRef = useRef<HTMLFormElement>(null);
   const router = useRouter();
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisiblePass, setIsVisiblePass] = useState(false);
+  const [isVisibleConfirmPass, setIsVisibleConfirmPass] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -35,7 +36,14 @@ const RegisterForm = () => {
     confirmPassword: "",
   });
   const [errors, setErrors] = useState<Record<string, any>>({});
-  const toggleVisibility = () => setIsVisible(!isVisible);
+
+  const handleVisibilityToggle = (field: string) => {
+    if (field === "password") {
+      setIsVisiblePass(!isVisiblePass);
+    } else if (field === "confirmPassword") {
+      setIsVisibleConfirmPass(!isVisibleConfirmPass);
+    }
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -117,16 +125,16 @@ const RegisterForm = () => {
             <button
               className="focus:outline-none"
               type="button"
-              onClick={toggleVisibility}
+              onClick={() => handleVisibilityToggle("password")}
             >
-              {isVisible ? (
+              {isVisiblePass ? (
                 <EyeIcon className="text-2xl text-default-400 pointer-events-none" />
               ) : (
                 <EyeOff className="text-2xl text-default-400 pointer-events-none" />
               )}
             </button>
           }
-          type={isVisible ? "text" : "password"}
+          type={isVisiblePass ? "text" : "password"}
           value={formData.password}
           onChange={handleChange}
         />
@@ -146,16 +154,16 @@ const RegisterForm = () => {
             <button
               className="focus:outline-none"
               type="button"
-              onClick={toggleVisibility}
+              onClick={() => handleVisibilityToggle("confirmPassword")}
             >
-              {isVisible ? (
+              {isVisibleConfirmPass ? (
                 <EyeIcon className="text-2xl text-default-400 pointer-events-none" />
               ) : (
                 <EyeOff className="text-2xl text-default-400 pointer-events-none" />
               )}
             </button>
           }
-          type={isVisible ? "text" : "password"}
+          type={isVisibleConfirmPass ? "text" : "password"}
           value={formData.confirmPassword}
           onChange={handleChange}
         />

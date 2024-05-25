@@ -1,4 +1,4 @@
-import { Cat, DollarSign, Home, User2Icon } from "lucide-react";
+import { Car, Cat, DollarSign, Home, KeyIcon, User2Icon } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { SidebarItem } from "./sidebar-item";
@@ -43,10 +43,11 @@ export const SidebarWrapper = () => {
                 icon={<User2Icon />}
                 href="/dashboard/my-profile"
               />
+
               <SidebarItem
                 isActive={pathname === "/dashboard/change-password"}
-                title="Payments"
-                icon={<DollarSign />}
+                title="Change Password"
+                icon={<KeyIcon />}
                 href="/dashboard/change-password"
               />
             </SidebarMenu>
