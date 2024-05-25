@@ -5,7 +5,7 @@ import { Cat } from "lucide-react";
 
 const RegisterPage = () => {
   return (
-    <div className="mt-20 flex justify-center items-center">
+    <div className="my-16 flex justify-center items-center">
       <Card className=" p-5 lg:px-24">
         <CardHeader className="flex justify-center mb-3 items-center">
           <Link className="text-center" href="/">

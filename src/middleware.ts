@@ -1,24 +1,21 @@
 import { jwtDecode } from "jwt-decode";
 import { cookies } from "next/headers";
-import { NextRequest, NextResponse } from "next/server";
-
+import type { NextRequest } from "next/server";
+import { NextResponse } from "next/server";
+import { logOut } from "./app/(withCommonLayout)/actions/auth";
 type Role = keyof typeof roleBasedPrivateRoutes;
 
 const AuthRoutes = ["/login", "/register"];
-const commonPrivateRoutes = [
-  "/dashboard",
-  "/dashboard/change-password",
-  "/pets/[petId]",
-];
+
 const roleBasedPrivateRoutes = {
-  USER: [/^\/dashboard\/user/],
+  USER: [/^\/dashboard$/],
   ADMIN: [/^\/dashboard\/admin/],
   SUPER_ADMIN: [/^\/dashboard\/super-admin/],
 };
 
-export function middleware(request: NextRequest) {
+export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
-  console.log({ pathname });
+
   const accessToken = cookies().get("accessToken")?.value;
 
   if (!accessToken) {
@@ -28,22 +25,8 @@ export function middleware(request: NextRequest) {
       return NextResponse.redirect(new URL("/login", request.url));
     }
   }
-
-  console.log({ pathname });
-
-  if (
-    accessToken &&
-    (commonPrivateRoutes.includes(pathname) ||
-      commonPrivateRoutes.some((route) => pathname.startsWith(route)))
-  ) {
-    return NextResponse.next();
-  }
-
   let decodedData = null;
-
-  if (accessToken) {
-    decodedData = jwtDecode(accessToken) as any;
-  }
+  decodedData = jwtDecode(accessToken) as any;
 
   const role = decodedData?.role;
 
@@ -53,10 +36,9 @@ export function middleware(request: NextRequest) {
       return NextResponse.next();
     }
   }
-
   return NextResponse.redirect(new URL("/", request.url));
 }
 
 export const config = {
-  matcher: ["/login", "/register", "/dashboard/:page*", "/pets/[petId]"],
+  matcher: ["/login", "/register", "/dashboard/:page*", "/pets/[petsId]"],
 };

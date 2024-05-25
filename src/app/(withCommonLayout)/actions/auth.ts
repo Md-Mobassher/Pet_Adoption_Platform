@@ -27,12 +27,9 @@ export async function loginUser(pre: FormData, formData: FormData) {
   }
 }
 
-export async function signUpUser(pre: FormData, formData: FormData) {
+export async function signUpUser(data: Record<string, any>) {
   try {
-    console.log(pre);
-    console.log(formData);
-    const formattedData = JSON.stringify(Object?.fromEntries(formData));
-    console.log(formattedData);
+    const formattedData = JSON.stringify(data);
     const res = await fetch(`${process.env.serverUrl}/auth/register`, {
       method: "POST",
       headers: {
@@ -40,8 +37,8 @@ export async function signUpUser(pre: FormData, formData: FormData) {
       },
       body: formattedData,
     });
-    const data = await res.json();
-    return data;
+    const result = await res.json();
+    return result;
   } catch (error) {
     throw error;
   }

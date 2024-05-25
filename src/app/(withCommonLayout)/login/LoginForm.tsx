@@ -1,28 +1,33 @@
 "use client";
 
-import { createRef, useEffect } from "react";
+import { createRef, useEffect, useState } from "react";
 import Link from "next/link";
 import { useFormState } from "react-dom";
 import { Input } from "@nextui-org/input";
 import SubmitButton from "@/components/ui/SubmitButton";
 import { loginUser } from "../actions/auth";
 import { toast } from "sonner";
+import { useRouter } from "next/navigation";
+import { EyeIcon, EyeOff } from "lucide-react";
 
 export default function LoginForm() {
+  const router = useRouter();
   const ref = createRef<HTMLFormElement>();
   const [state, formAction] = useFormState(loginUser, null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  const toggleVisibility = () => setIsVisible(!isVisible);
 
   useEffect(() => {
-    // console.log(state);
     if (state && state?.success) {
       toast.success(state?.message, { id: 1, duration: 3000 });
       ref.current!.reset();
-      window.location.href = "/";
+      router.push("/");
     }
     if (state && !state?.success) {
       toast.error(state?.message, { id: 1, duration: 3000 });
     }
-  }, [state, ref]);
+  }, [router, state, ref]);
 
   return (
     <div>
@@ -34,13 +39,27 @@ export default function LoginForm() {
           variant="bordered"
           color="primary"
         />
+
         <Input
           className="mt-5"
           name="password"
-          type="password"
           label="Password"
           variant="bordered"
           color="primary"
+          endContent={
+            <button
+              className="focus:outline-none"
+              type="button"
+              onClick={toggleVisibility}
+            >
+              {isVisible ? (
+                <EyeIcon className="text-2xl text-default-400 pointer-events-none" />
+              ) : (
+                <EyeOff className="text-2xl text-default-400 pointer-events-none" />
+              )}
+            </button>
+          }
+          type={isVisible ? "text" : "password"}
         />
         <div className="flex justify-end  my-3">
           Donot have an account?{" "}
