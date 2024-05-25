@@ -30,10 +30,9 @@ export const UserDropdown = () => {
         aria-label="User menu actions"
         onAction={(actionKey) => console.log({ actionKey })}
       >
-        <DropdownItem color="primary" key="settings">
-          My Profile
+        <DropdownItem>
+          <ThemeSwitcher />
         </DropdownItem>
-
         <DropdownItem
           onClick={() => logOutUser()}
           key="logout"
@@ -41,9 +40,6 @@ export const UserDropdown = () => {
           className="text-danger "
         >
           Log Out
-        </DropdownItem>
-        <DropdownItem>
-          <ThemeSwitcher />
         </DropdownItem>
       </DropdownMenu>
     </Dropdown>

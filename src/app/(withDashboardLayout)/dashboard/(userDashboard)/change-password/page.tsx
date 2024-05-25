@@ -12,9 +12,9 @@ const ChangePasswordPage = () => {
             <Cat className="size-8 mr-2 text-primary" />
           </Link>
           <div className="flex">
-            <p className="font-bold text-inherit px-4 text-3xl text-primary">
+            <h3 className="font-bold text-inherit px-4 text-3xl text-primary">
               Change Password
-            </p>
+            </h3>
           </div>
         </CardHeader>
         <CardBody>

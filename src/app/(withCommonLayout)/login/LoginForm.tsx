@@ -23,6 +23,7 @@ export default function LoginForm() {
       toast.success(state?.message, { id: 1, duration: 3000 });
       ref.current!.reset();
       router.push("/");
+      router.refresh();
     }
     if (state && !state?.success) {
       toast.error(state?.message, { id: 1, duration: 3000 });

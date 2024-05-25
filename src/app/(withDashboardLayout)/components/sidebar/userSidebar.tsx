@@ -43,6 +43,12 @@ export const SidebarWrapper = () => {
                 icon={<User2Icon />}
                 href="/dashboard/my-profile"
               />
+              <SidebarItem
+                isActive={pathname === "/dashboard/my-adopted-pets"}
+                title="My Adopted Pets"
+                icon={<Cat />}
+                href="/dashboard/my-adopted-pets"
+              />
 
               <SidebarItem
                 isActive={pathname === "/dashboard/change-password"}
