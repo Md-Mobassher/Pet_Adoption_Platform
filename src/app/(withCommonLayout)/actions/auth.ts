@@ -2,7 +2,6 @@
 
 import { jwtDecode } from "jwt-decode";
 import { cookies } from "next/headers";
-import { toast } from "sonner";
 
 export async function loginUser(pre: FormData, formData: FormData) {
   try {

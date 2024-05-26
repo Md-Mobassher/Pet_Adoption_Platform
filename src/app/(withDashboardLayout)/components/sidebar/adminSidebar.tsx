@@ -51,17 +51,12 @@ export const AdminSidebarWrapper = () => {
                 href="/dashboard/admin/user-management"
               />
               <SidebarItem
-                isActive={pathname === "/dashboard/admin/add-new-pet"}
-                title="Add new Pet"
+                isActive={pathname === "/dashboard/admin/pet-management"}
+                title="Pet Management"
                 icon={<CatIcon />}
-                href="/dashboard/admin/add-new-pet"
+                href="/dashboard/admin/pet-management"
               />
-              <SidebarItem
-                isActive={pathname === "/dashboard/admin/edit-pet"}
-                title="Edit Pet"
-                icon={<CatIcon />}
-                href="/dashboard/admin/Edit-pet"
-              />
+
               <SidebarItem
                 isActive={pathname === "/dashboard/admin/change-password"}
                 title="Change Password"

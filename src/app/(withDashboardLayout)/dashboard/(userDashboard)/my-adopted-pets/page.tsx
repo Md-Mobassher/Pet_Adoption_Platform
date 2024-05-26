@@ -4,7 +4,6 @@ import { Card, CardBody } from "@nextui-org/card";
 import { cookies } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
-import { toast } from "sonner";
 
 const MyAdoptedPetsPage = async () => {
   const accessToken = cookies().get("accessToken")?.value;
@@ -25,7 +24,7 @@ const MyAdoptedPetsPage = async () => {
   const adoptedPets = await res.json();
 
   return (
-    <div className="my-2">
+    <div className="my-4">
       <div className="">
         <h3 className="font-bold text-inherit px-4 text-3xl text-center">
           My <span className="text-primary">Adopted Pets</span>
