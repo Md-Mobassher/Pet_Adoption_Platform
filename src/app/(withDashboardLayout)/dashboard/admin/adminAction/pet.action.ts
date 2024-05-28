@@ -63,6 +63,7 @@ export async function updatePet(
 
 export async function deletePet(PetId: string) {
   try {
+    console.log(PetId);
     const accessToken = cookies().get("accessToken")?.value;
     const headers = new Headers();
     headers.append("Authorization", accessToken!);
@@ -74,6 +75,7 @@ export async function deletePet(PetId: string) {
     });
     revalidateTag("Pets");
     const data = await res.json();
+
     return data;
   } catch (error) {
     throw error;

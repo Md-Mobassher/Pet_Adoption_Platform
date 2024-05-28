@@ -20,6 +20,7 @@ import SubmitButton from "@/components/ui/SubmitButton";
 import { deleteUser } from "../../adminAction/user.action";
 import { useRouter } from "next/navigation";
 import UpdatePetForm from "./UpdatePetForm";
+import { deletePet } from "../../adminAction/pet.action";
 
 const columns = [
   { name: "NAME", uid: "name" },
@@ -45,14 +46,13 @@ interface PetData {
   adoptionRequirements: string;
 }
 
-interface petTableProps {
-  data: { data: PetData[] };
+interface PetTableProps {
+  data: PetData[];
 }
 
-export default function PetsTable({ data }: petTableProps) {
-  console.log(data);
+export default function PetsTable({ data }: PetTableProps) {
   const router = useRouter();
-  const pets = data;
+
   const [selected, setSelected] = useState<any>(null);
   const [action, setAction] = useState("");
 
@@ -168,12 +168,12 @@ export default function PetsTable({ data }: petTableProps) {
             <ModalHeader className="flex flex-col gap-1">
               Delete Pet
               <div className="flex space-x-4 justify-center items-center mt-4">
-                <Button onClick={onClose} color="primary">
+                <Button size="lg" onClick={onClose} color="primary">
                   Cancel
                 </Button>
                 <form
                   action={async () => {
-                    await deleteUser(selected), onClose();
+                    await deletePet(selected), onClose();
                   }}
                 >
                   <SubmitButton>Delete</SubmitButton>
@@ -196,7 +196,7 @@ export default function PetsTable({ data }: petTableProps) {
             </TableColumn>
           )}
         </TableHeader>
-        <TableBody items={pets}>
+        <TableBody items={data}>
           {(item: PetData) => (
             <TableRow key={item.id}>
               {(columnKey) => (
