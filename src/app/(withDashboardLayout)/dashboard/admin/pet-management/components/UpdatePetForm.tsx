@@ -17,7 +17,7 @@ const statuses = [
   { label: "DELETED", value: "DELETED" },
 ];
 
-export default function UpdateUserForm({ onClose, data }: any) {
+export default function UpdatePetForm({ onClose, data }: any) {
   const [state, formAction] = useFormState(
     updateUserStatus.bind(null, data.id),
     null
