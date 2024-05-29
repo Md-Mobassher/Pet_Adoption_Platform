@@ -17,7 +17,6 @@ import {
   TableRow,
 } from "@nextui-org/table";
 import SubmitButton from "@/components/ui/SubmitButton";
-import { deleteUser } from "../../adminAction/user.action";
 import { useRouter } from "next/navigation";
 import UpdatePetForm from "./UpdatePetForm";
 import { deletePet } from "../../adminAction/pet.action";
@@ -26,7 +25,6 @@ const columns = [
   { name: "NAME", uid: "name" },
   { name: "Species", uid: "species" },
   { name: "Age", uid: "age" },
-  { name: "Temperment", uid: "temperament" },
   { name: "Size", uid: "size" },
   { name: "ACTIONS", uid: "actions" },
 ];
@@ -41,9 +39,9 @@ interface PetData {
   size: string;
   location: string;
   description: string;
-  temperament: string;
-  medicalHistory: string;
-  adoptionRequirements: string;
+  temperament: string[];
+  medicalHistory: string[];
+  adoptionRequirements: string[];
 }
 
 interface PetTableProps {
@@ -52,10 +50,8 @@ interface PetTableProps {
 
 export default function PetsTable({ data }: PetTableProps) {
   const router = useRouter();
-
   const [selected, setSelected] = useState<any>(null);
   const [action, setAction] = useState("");
-
   const { isOpen, onOpen, onClose, onOpenChange } = useDisclosure();
 
   const handleDetails = (data: PetData) => {
@@ -100,7 +96,7 @@ export default function PetsTable({ data }: PetTableProps) {
               className="capitalize"
               // color={roleColorMap[data.species]}
               color="default"
-              size="sm"
+              size="md"
               variant="flat"
             >
               {data.species}
@@ -117,9 +113,10 @@ export default function PetsTable({ data }: PetTableProps) {
               {cellValue}
             </Chip>
           );
+
         case "size":
           return (
-            <Chip className="capitalize" size="sm" variant="flat">
+            <Chip className="capitalize" size="md" variant="flat">
               {cellValue}
             </Chip>
           );

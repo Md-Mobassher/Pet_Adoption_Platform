@@ -17,6 +17,7 @@ import { useRouter } from "next/navigation";
 import { useFormState } from "react-dom";
 import { creteAPet } from "../../adminAction/pet.action";
 import { toast } from "sonner";
+import { uploadImageToImgBB } from "../../../../../../../utils/uploadImageToImgBB";
 
 export default function AddPetForm({ onClose }: any) {
   const [selectedSpecies, setSelectedSpecies] = useState<Species | "">("");
@@ -24,23 +25,62 @@ export default function AddPetForm({ onClose }: any) {
   const ref = createRef<HTMLFormElement>();
   const [state, formAction] = useFormState(creteAPet, null);
 
-  useEffect(() => {
-    if (state && state?.success) {
-      toast.success(state?.message, { id: 1, duration: 2000 });
-      ref.current!.reset();
-      onclose();
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const formDataObject: { [key: string]: any } = {};
+
+    new FormData(e.currentTarget).forEach((value, key) => {
+      if (formDataObject[key]) {
+        if (Array.isArray(formDataObject[key])) {
+          formDataObject[key].push(value);
+        } else {
+          formDataObject[key] = [formDataObject[key], value];
+        }
+      } else {
+        formDataObject[key] = value;
+      }
+    });
+
+    // Extract the image file
+    const fileInput = e.currentTarget.querySelector(
+      'input[name="image"]'
+    ) as HTMLInputElement;
+    const imageFile = fileInput?.files?.[0];
+    if (!imageFile) {
+      toast.error("Please select an image to upload.", {
+        id: 1,
+        duration: 2000,
+      });
+      return;
     }
-    if (state && !state?.success) {
-      toast.error(state?.message, { id: 1, duration: 2000 });
+
+    try {
+      const imageUrl = await uploadImageToImgBB(imageFile);
+
+      if (imageUrl) {
+        formDataObject.image = imageUrl.url;
+        formDataObject.age = Number(formDataObject.age);
+
+        console.log("Form data:", formDataObject);
+
+        formAction(formDataObject);
+      }
+    } catch (error) {
+      console.error("Error uploading image:", error);
+      toast.error("Failed to upload image. Please try again.", {
+        id: 1,
+        duration: 2000,
+      });
     }
-  }, [state, ref, onClose]);
+  };
 
   return (
     <div className="m-3 p-5">
-      <form className="space-y-3" ref={ref} action={formAction}>
+      <form className="space-y-3" ref={ref} onSubmit={handleSubmit}>
         <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5 mb-8">
           <Input
-            required
+            isRequired
             name="name"
             type="text"
             label="Name"
@@ -52,7 +92,7 @@ export default function AddPetForm({ onClose }: any) {
             name="species"
             variant="bordered"
             color="primary"
-            required
+            isRequired
             onChange={(e) => setSelectedSpecies(e.target.value as Species)}
           >
             {petSpecies.map((species) => (
@@ -67,7 +107,7 @@ export default function AddPetForm({ onClose }: any) {
               name="breed"
               variant="bordered"
               color="primary"
-              required
+              isRequired
               disabledKeys={selectedSpecies}
             >
               {petBreeds[selectedSpecies].map((breed) => (
@@ -82,7 +122,7 @@ export default function AddPetForm({ onClose }: any) {
               name="breed"
               variant="bordered"
               color="primary"
-              required
+              isRequired
               disabledKeys={selectedSpecies}
             >
               {petBreeds.dog.map((breed) => (
@@ -93,7 +133,7 @@ export default function AddPetForm({ onClose }: any) {
             </Select>
           )}
           <Input
-            required
+            isRequired
             name="age"
             type="number"
             label="Age"
@@ -106,7 +146,7 @@ export default function AddPetForm({ onClose }: any) {
             name="size"
             variant="bordered"
             color="primary"
-            required
+            isRequired
           >
             {petSizes.map((size) => (
               <SelectItem key={size.value} value={size.value}>
@@ -115,7 +155,7 @@ export default function AddPetForm({ onClose }: any) {
             ))}
           </Select>
           <Input
-            required
+            isRequired
             name="location"
             type="text"
             label="Location"
@@ -123,7 +163,7 @@ export default function AddPetForm({ onClose }: any) {
             color="primary"
           />
           <Input
-            required
+            isRequired
             name="description"
             label="Description"
             variant="bordered"
@@ -135,7 +175,7 @@ export default function AddPetForm({ onClose }: any) {
             label="Medical History"
             variant="bordered"
             color="primary"
-            required
+            isRequired
             selectionMode="multiple"
           >
             {medicalHistories.map((history) => (
@@ -149,7 +189,7 @@ export default function AddPetForm({ onClose }: any) {
             label="Temperament"
             variant="bordered"
             color="primary"
-            required
+            isRequired
             selectionMode="multiple"
           >
             {temperaments.map((temperament) => (
@@ -164,7 +204,7 @@ export default function AddPetForm({ onClose }: any) {
             variant="bordered"
             color="primary"
             selectionMode="multiple"
-            required
+            isRequired
           >
             {adoptionRequirements.map((requirement) => (
               <SelectItem key={requirement.value} value={requirement.value}>
@@ -173,13 +213,13 @@ export default function AddPetForm({ onClose }: any) {
             ))}
           </Select>
 
-          <Input
+          <input
+            className="hover:border-primary border-2 p-2 rounded-xl text-primary text-sm"
             required
             name="image"
             type="file"
-            label="Image URL"
-            variant="bordered"
             color="primary"
+            onChange={(e) => (e?.target as HTMLInputElement).files?.[0]}
           />
         </div>
         <div className="">
