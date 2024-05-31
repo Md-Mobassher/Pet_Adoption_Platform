@@ -1,4 +1,4 @@
-import { Cat, Home, KeyIcon, User2Icon } from "lucide-react";
+import { Bird, Cat, Home, KeyIcon, User2Icon } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { SidebarItem } from "./sidebar-item";
@@ -43,6 +43,7 @@ export const SidebarWrapper = () => {
                 icon={<User2Icon />}
                 href="/dashboard/my-profile"
               />
+
               <SidebarItem
                 isActive={pathname === "/dashboard/my-adopted-pets"}
                 title="My Adopted Pets"
