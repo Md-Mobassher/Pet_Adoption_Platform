@@ -150,13 +150,17 @@ export default function PetsTable({ data }: PetTableProps) {
   return (
     <div>
       <CustomModal
-        size={action === "update" ? "3xl" : "xs"}
+        size={action === "update" ? "5xl" : "xs"}
         isOpen={isOpen}
         onOpenChange={onOpenChange}
       >
         {action === "update" && (
           <div>
-            <ModalHeader className="flex flex-col gap-1">Edit Pet</ModalHeader>
+            <ModalHeader className="flex justify-center mt-3 gap-1 text-2xl font-semibold">
+              <h3 className="font-semibold">
+                Edit <span className="text-primary">Pet</span>
+              </h3>
+            </ModalHeader>
             <UpdatePetForm onClose={onClose} data={selected}></UpdatePetForm>
           </div>
         )}

@@ -16,7 +16,7 @@ export default function AddPet() {
         onOpenChange={onOpenChange}
       >
         <ModalHeader className="flex justify-center mt-3 gap-1 text-2xl font-semibold">
-          <h3>
+          <h3 className="font-semibold">
             Add New <span className="text-primary">Pet</span>
           </h3>
         </ModalHeader>

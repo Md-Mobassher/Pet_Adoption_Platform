@@ -2,7 +2,7 @@
 
 import { Input } from "@nextui-org/input";
 import { Select, SelectItem } from "@nextui-org/select";
-import React, { useState, useRef, createRef, useEffect } from "react";
+import React, { useState, createRef, useEffect } from "react";
 import {
   adoptionRequirements,
   medicalHistories,
@@ -25,6 +25,17 @@ export default function AddPetForm({ onClose }: any) {
   const ref = createRef<HTMLFormElement>();
   const [state, formAction] = useFormState(creteAPet, null);
 
+  useEffect(() => {
+    console.log(state);
+    if (state && state?.success) {
+      toast.success(state.message, { id: 1, duration: 3000 });
+      onClose();
+    }
+    if (state && !state?.success) {
+      toast.error(state?.message, { id: 1, duration: 3000 });
+    }
+  }, [state, onClose]);
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -41,6 +52,24 @@ export default function AddPetForm({ onClose }: any) {
         formDataObject[key] = value;
       }
     });
+
+    if (typeof formDataObject.medicalHistory === "string") {
+      formDataObject.medicalHistory = [formDataObject.medicalHistory];
+    } else if (!Array.isArray(formDataObject.medicalHistory)) {
+      formDataObject.medicalHistory = [];
+    }
+    if (typeof formDataObject.temperament === "string") {
+      formDataObject.temperament = [formDataObject.temperament];
+    } else if (!Array.isArray(formDataObject.temperament)) {
+      formDataObject.temperament = [];
+    }
+    if (typeof formDataObject.adoptionRequirements === "string") {
+      formDataObject.adoptionRequirements = [
+        formDataObject.adoptionRequirements,
+      ];
+    } else if (!Array.isArray(formDataObject.adoptionRequirements)) {
+      formDataObject.adoptionRequirements = [];
+    }
 
     // Extract the image file
     const fileInput = e.currentTarget.querySelector(
@@ -64,7 +93,8 @@ export default function AddPetForm({ onClose }: any) {
 
         console.log("Form data:", formDataObject);
 
-        formAction(formDataObject);
+        formAction(formDataObject as FormData);
+        onClose();
       }
     } catch (error) {
       console.error("Error uploading image:", error);

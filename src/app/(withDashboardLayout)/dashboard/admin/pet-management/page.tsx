@@ -1,7 +1,6 @@
 import AddPet from "./components/AddPet";
-import PetsTable from "./components/PetsTable";
-import UsersTable from "./components/PetsTable";
 import { getCooke, logOut } from "@/app/(withCommonLayout)/actions/auth";
+import PetsTable from "./components/PetsTable";
 
 const PetMangementPage = async () => {
   const accessToken = await getCooke("accessToken");

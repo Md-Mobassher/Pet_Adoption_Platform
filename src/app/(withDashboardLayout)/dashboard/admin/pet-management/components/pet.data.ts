@@ -76,10 +76,10 @@ export const petBreeds: Record<Species, Breed[]> = {
 };
 
 export const petSizes: { label: string; value: string }[] = [
-  { label: "Small", value: "small" },
-  { label: "Medium", value: "medium" },
-  { label: "Large", value: "large" },
-  { label: "Extra Large", value: "extra_large" },
+  { label: "Small", value: "Small" },
+  { label: "Medium", value: "Medium" },
+  { label: "Large", value: "Large" },
+  { label: "Extra Large", value: "Extra Large" },
 ];
 
 export const adoptionRequirements: { label: string; value: string }[] = [
