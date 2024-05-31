@@ -1,10 +1,13 @@
 import {
   Cat,
   CatIcon,
+  GroupIcon,
   Home,
   KeyIcon,
   ParenthesesIcon,
   User,
+  User2Icon,
+  Users,
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -45,9 +48,15 @@ export const AdminSidebarWrapper = () => {
             />
             <SidebarMenu title="Main Menu">
               <SidebarItem
+                isActive={pathname === "/dashboard/admin/my-profile"}
+                title="My Profile"
+                icon={<User2Icon />}
+                href="/dashboard/admin/my-profile"
+              />
+              <SidebarItem
                 isActive={pathname === "/dashboard/admin/user-management"}
                 title="User Management"
-                icon={<User />}
+                icon={<Users />}
                 href="/dashboard/admin/user-management"
               />
               <SidebarItem

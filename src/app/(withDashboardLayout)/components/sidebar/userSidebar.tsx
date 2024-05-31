@@ -1,4 +1,4 @@
-import { Car, Cat, DollarSign, Home, KeyIcon, User2Icon } from "lucide-react";
+import { Cat, Home, KeyIcon, User2Icon } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { SidebarItem } from "./sidebar-item";

@@ -72,7 +72,14 @@ export default function NavigationBar({ user }: any) {
           {user && <Link href={routeMap[user?.role]}>Dashboard</Link>}
         </NavbarItem>
         <NavbarItem>
-          {user && <Link href={routeMap[user?.role]}>My Profile</Link>}
+          {user && user.role === "ADMIN" && (
+            <Link href="/dashboard/admin/my-profile">My Profile</Link>
+          )}
+        </NavbarItem>
+        <NavbarItem>
+          {user && user.role === "USER" && (
+            <Link href="/dashboard/my-profile">My Profile</Link>
+          )}
         </NavbarItem>
       </NavbarContent>
       <NavbarContent justify="end">
