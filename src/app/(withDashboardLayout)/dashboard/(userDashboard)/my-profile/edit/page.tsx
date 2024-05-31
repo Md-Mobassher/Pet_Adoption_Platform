@@ -9,15 +9,18 @@ const ChangePasswordPage = async () => {
   if (!accessToken) {
     return logOut();
   }
-  const res = await fetch(`${process.env.serverUrl}/users`, {
-    headers: {
-      Authorization: `${accessToken}`,
-    },
-    cache: "no-store",
-  });
-
-  const result = await res.json();
-  const myInfo = result?.data;
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/users/profile`,
+    {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `${accessToken}`,
+      },
+      cache: "no-store",
+    }
+  );
+  const myInfo = await res.json();
+  console.log(myInfo);
 
   return (
     <div className="flex p-10 justify-center items-center">
@@ -33,7 +36,7 @@ const ChangePasswordPage = async () => {
           </div>
         </CardHeader>
         <CardBody>
-          <EditProfile accessToken={accessToken} {...myInfo} />
+          <EditProfile accessToken={accessToken} {...myInfo?.data} />
         </CardBody>
       </Card>
     </div>

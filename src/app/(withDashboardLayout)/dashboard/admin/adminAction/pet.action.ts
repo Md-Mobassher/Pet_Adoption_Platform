@@ -8,15 +8,18 @@ export async function creteAPet(pre: FormData, formData: FormData) {
     const formattedData = JSON.stringify(formData);
     const accessToken = cookies().get("accessToken")?.value;
 
-    const res = await fetch(`${process.env.serverUrl}/pets/create`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `${accessToken}`,
-      },
-      body: formattedData,
-      cache: "no-store",
-    });
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/pets/create`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `${accessToken}`,
+        },
+        body: formattedData,
+        cache: "no-store",
+      }
+    );
     revalidateTag("Pets");
     const data = await res.json();
     console.log(data);
@@ -35,15 +38,18 @@ export async function updatePet(
     const formattedData = JSON.stringify(formData);
     const accessToken = cookies().get("accessToken")?.value;
 
-    const res = await fetch(`${process.env.serverUrl}/Pets/${PetId}`, {
-      method: "PATCH",
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/Pets/${PetId}`,
+      {
+        method: "PATCH",
 
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `${accessToken}`,
-      },
-      body: formattedData,
-    });
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `${accessToken}`,
+        },
+        body: formattedData,
+      }
+    );
     revalidateTag("Pets");
     const data = await res.json();
     return data;
@@ -60,10 +66,13 @@ export async function deletePet(PetId: string) {
     headers.append("Authorization", accessToken!);
     headers.append("Content-Type", "application/json");
 
-    const res = await fetch(`${process.env.serverUrl}/Pets/${PetId}`, {
-      method: "DELETE",
-      headers: headers,
-    });
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/Pets/${PetId}`,
+      {
+        method: "DELETE",
+        headers: headers,
+      }
+    );
     revalidateTag("Pets");
     const data = await res.json();
 

@@ -1,20 +1,23 @@
 import { getCooke, logOut } from "@/app/(withCommonLayout)/actions/auth";
-import EditProfile from "./EditProfile";
 import { Card, CardBody, CardFooter } from "@nextui-org/card";
+import EditProfileButton from "./EditProfileButton";
 
 const UserProfilePage = async () => {
-  const accessToken = getCooke;
+  const accessToken = await getCooke("accessToken");
 
   if (!accessToken) {
     return logOut();
   }
-  const res = await fetch(`${process.env.serverUrl}/users/me`, {
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `${accessToken}`,
-    },
-    cache: "no-store",
-  });
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/users/profile`,
+    {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `${accessToken}`,
+      },
+      cache: "no-store",
+    }
+  );
   const myInfo = await res.json();
 
   return (
@@ -48,7 +51,7 @@ const UserProfilePage = async () => {
             </div>
           </CardBody>
           <CardFooter>
-            <EditProfile />
+            <EditProfileButton />
           </CardFooter>
         </Card>
       </div>

@@ -12,16 +12,13 @@ const editProfileSchema = z.object({
   email: z.string().email("Email is required"),
 });
 
-const EditProfile = ({
-  name,
-  email,
-  accessToken,
-}: {
+export type TEditProfileProps = {
   name: string;
   email: string;
   accessToken: string;
-}) => {
-  console.log(name, email, accessToken);
+};
+
+const EditProfile = ({ accessToken, name, email }: TEditProfileProps) => {
   const formRef = useRef<HTMLFormElement>(null);
   const router = useRouter();
   const [formData, setFormData] = useState({
@@ -30,28 +27,29 @@ const EditProfile = ({
   });
   const [errors, setErrors] = useState<Record<string, any>>({});
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+    setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     try {
       editProfileSchema.parse(formData);
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/users/update-profile`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `${accessToken}`,
+          },
+          body: JSON.stringify(formData),
+          cache: "no-store",
+        }
+      );
 
-      const res = await fetch(`${process.env.serverUrl}/users/update-profile`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `${accessToken}`,
-        },
-
-        cache: "no-store",
-      });
       const result = await res.json();
 
       if (result.success) {
@@ -59,8 +57,7 @@ const EditProfile = ({
           id: 1,
           duration: 3000,
         });
-        formRef.current!.reset();
-        router.push("/my-profile");
+        router.push("/dashboard/my-profile");
         router.refresh();
       } else {
         toast.error(result.message, { id: 1, duration: 3000 });
@@ -84,8 +81,8 @@ const EditProfile = ({
           label="Name"
           variant="bordered"
           color="primary"
-          value={formData.name}
-          onChange={handleChange}
+          defaultValue={formData.name}
+          onChange={handleInputChange}
         />
         {errors.name && (
           <p className="text-red-600 text-sm my-2 pl-3">
@@ -98,8 +95,8 @@ const EditProfile = ({
           label="Email"
           variant="bordered"
           color="primary"
-          value={formData.email}
-          onChange={handleChange}
+          defaultValue={formData.email}
+          onChange={handleInputChange}
         />
         {errors.email && (
           <p className="text-red-600 text-sm my-2 pl-3">

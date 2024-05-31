@@ -7,7 +7,7 @@ const UserMangementPage = async () => {
   if (!accessToken) {
     return logOut();
   }
-  const res = await fetch(`${process.env.serverUrl}/users`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/users`, {
     headers: {
       Authorization: `${accessToken}` || "",
     },

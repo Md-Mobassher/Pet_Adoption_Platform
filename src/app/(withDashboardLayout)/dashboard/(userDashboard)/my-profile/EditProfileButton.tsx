@@ -3,7 +3,7 @@
 import { Button } from "@nextui-org/button";
 import Link from "next/link";
 
-const EditProfile = () => {
+const EditProfileButton = () => {
   return (
     <Link href={`my-profile/edit`}>
       <Button color="primary" radius="sm" size="lg">
@@ -13,4 +13,4 @@ const EditProfile = () => {
   );
 };
 
-export default EditProfile;
+export default EditProfileButton;

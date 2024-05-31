@@ -17,7 +17,7 @@ export async function updateUserStatus(
       return logOut();
     }
     const res = await fetch(
-      `${process.env.serverUrl}/users/update-status/${userId}`,
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/users/update-status/${userId}`,
       {
         method: "PATCH",
         headers: {
@@ -43,10 +43,13 @@ export async function deleteUser(userId: string) {
     headers.append("Authorization", accessToken!);
     headers.append("Content-Type", "application/json");
 
-    const res = await fetch(`${process.env.serverUrl}/users/${userId}`, {
-      method: "DELETE",
-      headers: headers,
-    });
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/users/${userId}`,
+      {
+        method: "DELETE",
+        headers: headers,
+      }
+    );
     revalidateTag("users");
     const data = await res.json();
     return data;

@@ -6,14 +6,17 @@ import { cookies } from "next/headers";
 export async function loginUser(pre: FormData, formData: FormData) {
   try {
     const formattedData = JSON.stringify(Object?.fromEntries(formData));
-    const res = await fetch(`${process.env.serverUrl}/auth/login`, {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: formattedData,
-      credentials: "include",
-    });
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/auth/login`,
+      {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: formattedData,
+        credentials: "include",
+      }
+    );
     const data = await res.json();
 
     if (data.success) {
@@ -30,13 +33,16 @@ export async function loginUser(pre: FormData, formData: FormData) {
 export async function signUpUser(data: Record<string, any>) {
   try {
     const formattedData = JSON.stringify(data);
-    const res = await fetch(`${process.env.serverUrl}/auth/register`, {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: formattedData,
-    });
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/auth/register`,
+      {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: formattedData,
+      }
+    );
     const result = await res.json();
     return result;
   } catch (error) {
@@ -53,15 +59,18 @@ export async function changePassword(data: Record<string, any>) {
     }
 
     const formattedData = JSON.stringify(data);
-    const res = await fetch(`${process.env.serverUrl}/auth/change-password`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `${accessToken}`,
-      },
-      body: formattedData,
-      credentials: "include",
-    });
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/auth/change-password`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `${accessToken}`,
+        },
+        body: formattedData,
+        credentials: "include",
+      }
+    );
 
     const result = await res.json();
     console.log(result);
@@ -81,13 +90,16 @@ export async function refreshTokenGen() {
     const isExpired = decodedData.exp - now <= buffer;
     if (isExpired) {
       try {
-        const res = await fetch(`${process.env.serverUrl}/auth/refresh-token`, {
-          method: "POST",
-          headers: {
-            "Content-type": "application/json",
-            Cookie: cookies().toString(),
-          },
-        });
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_SERVER_URL}/auth/refresh-token`,
+          {
+            method: "POST",
+            headers: {
+              "Content-type": "application/json",
+              Cookie: cookies().toString(),
+            },
+          }
+        );
         const { data } = await res.json();
         cookies().set("accessToken", data.accessToken);
       } catch (error) {

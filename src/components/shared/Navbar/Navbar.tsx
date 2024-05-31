@@ -71,6 +71,9 @@ export default function NavigationBar({ user }: any) {
         <NavbarItem>
           {user && <Link href={routeMap[user?.role]}>Dashboard</Link>}
         </NavbarItem>
+        <NavbarItem>
+          {user && <Link href={routeMap[user?.role]}>My Profile</Link>}
+        </NavbarItem>
       </NavbarContent>
       <NavbarContent justify="end">
         <NavbarItem>

@@ -1,7 +1,7 @@
 import PetCard from "@/components/pages/pets/PetCard";
 
 const AllPetsPage = async () => {
-  const res = await fetch(`${process.env.serverUrl}/pets?`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/pets?`, {
     next: {
       tags: ["pets"],
     },

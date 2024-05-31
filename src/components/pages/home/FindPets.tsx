@@ -3,7 +3,7 @@ import FilterPets from "./FilterPets";
 import PetCard from "../pets/PetCard";
 
 const FIndPets = async () => {
-  const res = await fetch(`${process.env.serverUrl}/pets?`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/pets?`, {
     next: {
       tags: ["pets"],
     },

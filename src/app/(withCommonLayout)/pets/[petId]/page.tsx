@@ -3,11 +3,14 @@ type TProps = {
 };
 
 const PetDetailsPage = async ({ params }: TProps) => {
-  const res = await fetch(`${process.env.serverUrl}/pets/${params.petId}`, {
-    next: {
-      tags: ["pet"],
-    },
-  });
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/pets/${params.petId}`,
+    {
+      next: {
+        tags: ["pet"],
+      },
+    }
+  );
   const { data, error } = await res.json();
   console.log(error);
 

@@ -12,14 +12,17 @@ const MyAdoptedPetsPage = async () => {
     return logOut();
   }
 
-  const res = await fetch(`${process.env.serverUrl}/adoption-requests`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `${accessToken}`,
-    },
-    cache: "no-store",
-  });
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/adoption-requests`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `${accessToken}`,
+      },
+      cache: "no-store",
+    }
+  );
 
   const adoptedPets = await res.json();
 
