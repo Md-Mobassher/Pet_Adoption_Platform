@@ -15,7 +15,7 @@ export async function uploadImageToImgBB(imageFile: any) {
     // console.log(data);
 
     if (data.success) {
-      console.log("Image uploaded successfully:", data.data);
+      // console.log("Image uploaded successfully:", data.data);
       return data.data; // return the uploaded image data
     } else {
       throw new Error(`Image upload failed: ${data.status}`);

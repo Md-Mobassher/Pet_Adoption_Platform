@@ -82,7 +82,7 @@ export const petSizes: { label: string; value: string }[] = [
   { label: "Extra Large", value: "Extra Large" },
 ];
 
-export const adoptionRequirements: { label: string; value: string }[] = [
+export const adoptionRequirementss: { label: string; value: string }[] = [
   { label: "Fenced Yard Required", value: "fenced_yard" },
   { label: "Home Visit Required", value: "home_visit" },
   {

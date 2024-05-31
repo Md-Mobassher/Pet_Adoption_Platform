@@ -6,13 +6,13 @@ import { useFormState } from "react-dom";
 import { toast } from "sonner";
 import { Input } from "@nextui-org/input";
 import {
-  adoptionRequirements,
   medicalHistories,
   petBreeds,
   petSizes,
   petSpecies,
   Species,
   temperaments,
+  adoptionRequirementss,
 } from "./pet.data";
 import { Button } from "@nextui-org/button";
 import { updatePet } from "../../adminAction/pet.action";
@@ -20,14 +20,14 @@ import { uploadImageToImgBB } from "../../../../../../../utils/uploadImageToImgB
 
 export default function UpdatePetForm({ onClose, data }: any) {
   const {
-    id,
+    id: petId,
     name,
     species,
     breed,
     size,
     age,
     location,
-    adoptionRequirement,
+    adoptionRequirements,
     temperament,
     description,
     image,
@@ -36,10 +36,23 @@ export default function UpdatePetForm({ onClose, data }: any) {
   console.log(data);
 
   const [selectedSpecies, setSelectedSpecies] = useState<Species | "">(species);
-  const [formData, setFormData] = useState(data);
+  const [formData, setFormData] = useState({
+    name,
+    species,
+    breed,
+    size,
+    age,
+    location,
+    description,
+    adoptionRequirements,
+    temperament,
+    medicalHistory,
+    image,
+  });
 
+  console.log(formData.adoptionRequirements);
   const ref = createRef<HTMLFormElement>();
-  const [state, formAction] = useFormState(updatePet.bind(null, id), null);
+  const [state, formAction] = useFormState(updatePet.bind(null, petId), null);
 
   useEffect(() => {
     if (state && state?.success) {
@@ -53,7 +66,9 @@ export default function UpdatePetForm({ onClose, data }: any) {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     const formDataObject: { [key: string]: any } = {};
+
     new FormData(e.currentTarget).forEach((value, key) => {
       if (formDataObject[key]) {
         if (Array.isArray(formDataObject[key])) {
@@ -66,29 +81,50 @@ export default function UpdatePetForm({ onClose, data }: any) {
       }
     });
 
-    try {
-      const fileInput = e.currentTarget.querySelector(
-        'input[name="image"]'
-      ) as HTMLInputElement;
-      const imageFile = fileInput?.files?.[0];
-      if (imageFile) {
-        const imageUrl = await uploadImageToImgBB(imageFile);
+    if (typeof formDataObject.medicalHistory === "string") {
+      formDataObject.medicalHistory = [formDataObject.medicalHistory];
+    } else if (!Array.isArray(formDataObject.medicalHistory)) {
+      formDataObject.medicalHistory = [];
+    }
+    if (typeof formDataObject.temperament === "string") {
+      formDataObject.temperament = [formDataObject.temperament];
+    } else if (!Array.isArray(formDataObject.temperament)) {
+      formDataObject.temperament = [];
+    }
+    if (typeof formDataObject.adoptionRequirements === "string") {
+      formDataObject.adoptionRequirements = [
+        formDataObject.adoptionRequirements,
+      ];
+    } else if (!Array.isArray(formDataObject.adoptionRequirements)) {
+      formDataObject.adoptionRequirements = [];
+    }
 
+    // Extract the image file
+    const fileInput = e.currentTarget.querySelector(
+      'input[name="image"]'
+    ) as HTMLInputElement;
+    const imageFile = fileInput?.files?.[0];
+    if (!imageFile) {
+      formDataObject.age = Number(formDataObject.age);
+      formDataObject.image = data.image;
+      formAction(formDataObject as FormData);
+    }
+
+    if (imageFile) {
+      try {
+        const imageUrl = await uploadImageToImgBB(imageFile);
         if (imageUrl) {
           formDataObject.image = imageUrl.url;
-          return formDataObject;
         }
         formDataObject.age = Number(formDataObject.age);
-        console.log("Form data:", formDataObject);
-
         formAction(formDataObject as FormData);
+      } catch (error) {
+        console.error("Error uploading image:", error);
+        toast.error("Failed to upload image. Please try again.", {
+          id: 1,
+          duration: 2000,
+        });
       }
-    } catch (error) {
-      console.error("Error uploading image:", error);
-      toast.error("Failed to upload image. Please try again.", {
-        id: 1,
-        duration: 2000,
-      });
     }
   };
 
@@ -102,18 +138,20 @@ export default function UpdatePetForm({ onClose, data }: any) {
             label="Name"
             variant="bordered"
             color="primary"
-            defaultValue={formData?.name}
+            defaultValue={formData.name}
           />
+
           <Select
             label="Species"
             name="species"
             variant="bordered"
             color="primary"
             defaultSelectedKeys={[formData.species]}
-            onChange={(e) => {
-              setFormData((prevData: string) => ({ prevData, species: e }));
-            }}
-            // onChange={(e) => setSelectedSpecies(e.target.value as Species)}
+            onChange={(e) =>
+              setSelectedSpecies(
+                formData.species || (e.target.value as Species)
+              )
+            }
           >
             {petSpecies.map((species) => (
               <SelectItem key={species.value} value={species.value}>
@@ -121,21 +159,35 @@ export default function UpdatePetForm({ onClose, data }: any) {
               </SelectItem>
             ))}
           </Select>
-
-          <Select
-            label="Breed"
-            name="breed"
-            variant="bordered"
-            color="primary"
-            defaultSelectedKeys={[formData.breed]}
-            disabledKeys={selectedSpecies}
-          >
-            {petBreeds.dog.map((breed) => (
-              <SelectItem key={breed.value} value={breed.value}>
-                {breed.label}
-              </SelectItem>
-            ))}
-          </Select>
+          {selectedSpecies ? (
+            <Select
+              label="Breed"
+              name="breed"
+              variant="bordered"
+              color="primary"
+              defaultSelectedKeys={[formData.breed]}
+            >
+              {petBreeds[selectedSpecies].map((breed) => (
+                <SelectItem key={breed.value} value={breed.value}>
+                  {breed.label}
+                </SelectItem>
+              ))}
+            </Select>
+          ) : (
+            <Select
+              label="Breed"
+              name="breed"
+              variant="bordered"
+              color="primary"
+              defaultSelectedKeys={[formData.breed]}
+            >
+              {petBreeds.dog.map((breed) => (
+                <SelectItem key={breed.value} value={breed.value}>
+                  {breed.label}
+                </SelectItem>
+              ))}
+            </Select>
+          )}
 
           <Input
             name="age"
@@ -165,14 +217,14 @@ export default function UpdatePetForm({ onClose, data }: any) {
             label="Location"
             variant="bordered"
             color="primary"
-            defaultValue={location}
+            defaultValue={formData.location}
           />
           <Input
             name="description"
             label="Description"
             variant="bordered"
             color="primary"
-            defaultValue={description}
+            defaultValue={formData.description}
           />
 
           <Select
@@ -181,7 +233,7 @@ export default function UpdatePetForm({ onClose, data }: any) {
             variant="bordered"
             color="primary"
             selectionMode="multiple"
-            defaultSelectedKeys={[formData.medicalHistory]}
+            defaultSelectedKeys={formData.medicalHistory}
           >
             {medicalHistories.map((history) => (
               <SelectItem key={history.value} value={history.value}>
@@ -195,7 +247,7 @@ export default function UpdatePetForm({ onClose, data }: any) {
             variant="bordered"
             color="primary"
             selectionMode="multiple"
-            defaultSelectedKeys={[formData.temperment]}
+            defaultSelectedKeys={formData.temperament}
           >
             {temperaments.map((temperament) => (
               <SelectItem key={temperament.value} value={temperament.value}>
@@ -209,9 +261,9 @@ export default function UpdatePetForm({ onClose, data }: any) {
             variant="bordered"
             color="primary"
             selectionMode="multiple"
-            defaultSelectedKeys={[formData.adoptionRequirement]}
+            defaultSelectedKeys={formData.adoptionRequirements}
           >
-            {adoptionRequirements.map((requirement) => (
+            {adoptionRequirementss.map((requirement) => (
               <SelectItem key={requirement.value} value={requirement.value}>
                 {requirement.label}
               </SelectItem>
@@ -223,7 +275,6 @@ export default function UpdatePetForm({ onClose, data }: any) {
             name="image"
             type="file"
             color="primary"
-            onChange={(e) => (e?.target as HTMLInputElement).files?.[0]}
           />
         </div>
         <div className="">

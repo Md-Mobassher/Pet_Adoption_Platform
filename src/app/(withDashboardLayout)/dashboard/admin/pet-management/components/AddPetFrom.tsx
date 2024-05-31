@@ -5,6 +5,7 @@ import { Select, SelectItem } from "@nextui-org/select";
 import React, { useState, createRef, useEffect } from "react";
 import {
   adoptionRequirements,
+  adoptionRequirementss,
   medicalHistories,
   petBreeds,
   petSizes,
@@ -26,7 +27,7 @@ export default function AddPetForm({ onClose }: any) {
   const [state, formAction] = useFormState(creteAPet, null);
 
   useEffect(() => {
-    console.log(state);
+    // console.log(state);
     if (state && state?.success) {
       toast.success(state.message, { id: 1, duration: 3000 });
       onClose();
@@ -236,7 +237,7 @@ export default function AddPetForm({ onClose }: any) {
             selectionMode="multiple"
             isRequired
           >
-            {adoptionRequirements.map((requirement) => (
+            {adoptionRequirementss.map((requirement) => (
               <SelectItem key={requirement.value} value={requirement.value}>
                 {requirement.label}
               </SelectItem>

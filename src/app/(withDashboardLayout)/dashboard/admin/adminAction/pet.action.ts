@@ -5,9 +5,7 @@ import { cookies } from "next/headers";
 
 export async function creteAPet(pre: FormData, formData: FormData) {
   try {
-    console.log(formData);
     const formattedData = JSON.stringify(formData);
-    console.log(formattedData);
     const accessToken = cookies().get("accessToken")?.value;
 
     const res = await fetch(`${process.env.serverUrl}/pets/create`, {
@@ -33,19 +31,17 @@ export async function updatePet(
   pre: FormData,
   formData: FormData
 ) {
-  console.log(formData, PetId);
   try {
     const formattedData = JSON.stringify(formData);
-
     const accessToken = cookies().get("accessToken")?.value;
-    const headers = new Headers();
-    headers.append("Authorization", accessToken!);
-    headers.append("Content-Type", "application/json");
 
     const res = await fetch(`${process.env.serverUrl}/Pets/${PetId}`, {
       method: "PATCH",
 
-      headers: headers,
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `${accessToken}`,
+      },
       body: formattedData,
     });
     revalidateTag("Pets");
