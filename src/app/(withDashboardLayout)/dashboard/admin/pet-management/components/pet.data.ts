@@ -82,6 +82,11 @@ export const petSizes: { label: string; value: string }[] = [
   { label: "Extra Large", value: "Extra Large" },
 ];
 
+export const petGenders: { label: string; value: string }[] = [
+  { label: "Male", value: "Male" },
+  { label: "Female", value: "Female" },
+];
+
 export const adoptionRequirementss: { label: string; value: string }[] = [
   { label: "Fenced Yard Required", value: "fenced_yard" },
   { label: "Home Visit Required", value: "home_visit" },
@@ -133,4 +138,15 @@ export const medicalHistories: { label: string; value: string }[] = [
   { label: "Chronic condition", value: "chronic_condition" },
   { label: "Heartworm treated", value: "heartworm_treated" },
   { label: "Ear infections treated", value: "ear_infections_treated" },
+];
+
+export const specialNeeds: { label: string; value: string }[] = [
+  { label: "Special Diet", value: "Special Diet" },
+  { label: "Mobility Assistance", value: "Mobility Assistance" },
+  { label: "Medication", value: "Medication" },
+  { label: "Therapy", value: "Therapy" },
+  { label: "Hearing Impaired", value: "Hearing Impaired" },
+  { label: "Vision Impaired", value: "Vision Impaired" },
+  { label: "Behavioral Training", value: "Behavioral Training" },
+  { label: "Frequent Vet Visits", value: "Frequent Vet Visits" },
 ];
