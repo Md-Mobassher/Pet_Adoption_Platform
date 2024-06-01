@@ -22,7 +22,7 @@ export default function LoginForm() {
     if (state && state?.success) {
       toast.success(state?.message, { id: 1, duration: 3000 });
       ref.current!.reset();
-      router.push("/");
+      window.location.href = "/dashboard";
       router.refresh();
     }
     if (state && !state?.success) {

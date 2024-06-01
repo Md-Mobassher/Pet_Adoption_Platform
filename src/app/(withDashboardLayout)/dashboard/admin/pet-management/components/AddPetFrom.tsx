@@ -4,7 +4,6 @@ import { Input } from "@nextui-org/input";
 import { Select, SelectItem } from "@nextui-org/select";
 import React, { useState, createRef, useEffect } from "react";
 import {
-  adoptionRequirements,
   adoptionRequirementss,
   medicalHistories,
   petBreeds,
