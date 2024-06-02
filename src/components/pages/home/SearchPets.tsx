@@ -41,6 +41,7 @@ const SearchPets: React.FC<SearchPetsProps> = ({ onSearch }) => {
     if (filteredData.age) {
       filteredData.age = Number(filteredData.age);
     }
+    console.log(filteredData);
 
     onSearch(filteredData);
 
@@ -56,7 +57,7 @@ const SearchPets: React.FC<SearchPetsProps> = ({ onSearch }) => {
 
   return (
     <form ref={formRef} onSubmit={handleSearch}>
-      <div className="flex justify-center items-center lg:pb-6 pb-3 lg:gap-5 md:gap-3 gap-1 px-4 lg:border-b">
+      <div className="flex  justify-center items-center lg:pb-6 pb-3 lg:gap-5 md:gap-3 gap-1 px-4 lg:border-b">
         <Select
           label="Species"
           name="species"
@@ -68,9 +69,9 @@ const SearchPets: React.FC<SearchPetsProps> = ({ onSearch }) => {
             setSelectedSpecies(e.target.value as Species);
           }}
         >
-          {petSpecies.map((species) => (
-            <SelectItem key={species.value} value={species.value}>
-              {species.label}
+          {petSpecies.map((specie) => (
+            <SelectItem key={specie.value} value={specie.value}>
+              {specie.label}
             </SelectItem>
           ))}
         </Select>
@@ -89,7 +90,7 @@ const SearchPets: React.FC<SearchPetsProps> = ({ onSearch }) => {
                   {breed.label}
                 </SelectItem>
               ))
-            : petBreeds.dog.map((breed) => (
+            : petBreeds?.Dog?.map((breed) => (
                 <SelectItem key={breed.value} value={breed.value}>
                   {breed.label}
                 </SelectItem>
@@ -97,7 +98,7 @@ const SearchPets: React.FC<SearchPetsProps> = ({ onSearch }) => {
         </Select>
 
         <Input
-          type="text"
+          type="number"
           label="Age"
           labelPlacement="inside"
           variant="bordered"

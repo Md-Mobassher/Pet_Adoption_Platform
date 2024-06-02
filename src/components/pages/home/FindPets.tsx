@@ -12,6 +12,7 @@ export type TPet = {
   breed: string;
   age: number;
   size: string;
+  gender: string;
   location: string;
   description: string;
   temperament: string[];
@@ -30,7 +31,9 @@ type SearchCriteria = {
 type FilterCriteria = {
   size?: string;
   gender?: string;
-  specialNeeds?: string;
+  medicalHistory?: string[];
+  temperament?: string[];
+  adoptionRequirements?: string[];
 };
 
 const FindPets = () => {
@@ -41,10 +44,17 @@ const FindPets = () => {
 
   const fetchPets = async () => {
     try {
-      const params = new URLSearchParams({
-        ...searchCriteria,
-        ...filterCriteria,
-      });
+      const params = new URLSearchParams();
+
+      Object.entries({ ...searchCriteria, ...filterCriteria }).forEach(
+        ([key, value]) => {
+          if (Array.isArray(value)) {
+            value.forEach((val) => params.append(key, val));
+          } else if (value) {
+            params.append(key, value);
+          }
+        }
+      );
 
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_SERVER_URL}/pets?${params.toString()}`,
@@ -62,6 +72,7 @@ const FindPets = () => {
         setPets([]);
       }
     } catch (err) {
+      console.log(err);
       setError("Failed to fetch pets");
     }
   };
@@ -90,7 +101,11 @@ const FindPets = () => {
             ) : pets.length > 0 ? (
               pets.map((item) => <PetCard key={item.id} {...item} />)
             ) : (
-              <p>No pets found</p>
+              <div className="text-center">
+                <p className="text-red-500 text-xl font-semibold">
+                  No pets found
+                </p>
+              </div>
             )}
           </div>
         </div>

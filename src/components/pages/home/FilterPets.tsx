@@ -20,25 +20,33 @@ const FilterPets: React.FC<FilterPetsProps> = ({ onFilter }) => {
   const [formData, setFormData] = useState({
     size: "",
     gender: "",
-    medicalHistory: [],
-    temperament: [],
-    adoptionRequirements: [],
+    medicalHistory: [] as string[],
+    temperament: [] as string[],
+    adoptionRequirements: [] as string[],
   });
 
   const handleFilterChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({ ...prevData, [name]: value }));
+
+    // Handle multiple selections correctly
+    if (e.target instanceof HTMLSelectElement && e.target.multiple) {
+      const options = Array.from(e.target.options);
+      const values = options
+        .filter((option) => option.selected)
+        .map((option) => option.value);
+      setFormData((prevData) => ({ ...prevData, [name]: values }));
+    } else {
+      setFormData((prevData) => ({ ...prevData, [name]: value }));
+    }
   };
 
-  const handleApplyFilters = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => {
+  const handleApplyFilters = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const filteredData: Record<string, string | string[]> = Object.fromEntries(
-      Object.entries(formData).filter(([key, value]) => value !== "")
+      Object.entries(formData).filter(([key, value]) => value.length > 0)
     );
 
     console.log(filteredData);
@@ -75,6 +83,7 @@ const FilterPets: React.FC<FilterPetsProps> = ({ onFilter }) => {
           </Select>
           <Select
             label="Gender"
+            name="gender"
             placeholder="Select a gender"
             variant="bordered"
             color="primary"
