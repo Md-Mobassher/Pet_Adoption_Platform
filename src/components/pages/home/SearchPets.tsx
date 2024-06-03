@@ -57,7 +57,7 @@ const SearchPets: React.FC<SearchPetsProps> = ({ onSearch }) => {
 
   return (
     <form ref={formRef} onSubmit={handleSearch}>
-      <div className="flex  justify-center items-center lg:pb-6 pb-3 lg:gap-5 md:gap-3 gap-1 px-4 lg:border-b">
+      <div className=" grid lg:grid-cols-5  md:grid-cols-5 grid-cols-3 lg:pb-6 pb-3 lg:gap-5 md:gap-3 gap-2 px-4 lg:border-b">
         <Select
           label="Species"
           name="species"

@@ -95,7 +95,7 @@ const FindPets = () => {
   };
 
   return (
-    <div className="py-10">
+    <div className="py-5">
       <SearchPets onSearch={handleSearch} />
       <div className="flex flex-col lg:flex-row lg:justify-between">
         <FilterPets onFilter={handleFilter} />

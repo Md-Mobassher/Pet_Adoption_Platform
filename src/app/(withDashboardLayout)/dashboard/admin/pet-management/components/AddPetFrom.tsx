@@ -7,6 +7,7 @@ import {
   adoptionRequirementss,
   medicalHistories,
   petBreeds,
+  petGenders,
   petSizes,
   petSpecies,
   Species,
@@ -155,7 +156,7 @@ export default function AddPetForm({ onClose }: any) {
               isRequired
               disabledKeys={selectedSpecies}
             >
-              {petBreeds.dog.map((breed) => (
+              {petBreeds.Dog.map((breed) => (
                 <SelectItem key={breed.value} value={breed.value}>
                   {breed.label}
                 </SelectItem>
@@ -181,6 +182,19 @@ export default function AddPetForm({ onClose }: any) {
             {petSizes.map((size) => (
               <SelectItem key={size.value} value={size.value}>
                 {size.label}
+              </SelectItem>
+            ))}
+          </Select>
+          <Select
+            label="Gender"
+            name="gender"
+            variant="bordered"
+            color="primary"
+            isRequired
+          >
+            {petGenders.map((gender) => (
+              <SelectItem key={gender.value} value={gender.value}>
+                {gender.label}
               </SelectItem>
             ))}
           </Select>

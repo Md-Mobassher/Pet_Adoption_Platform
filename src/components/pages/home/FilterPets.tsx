@@ -63,10 +63,10 @@ const FilterPets: React.FC<FilterPetsProps> = ({ onFilter }) => {
   };
 
   return (
-    <div className="pr-3 lg:w-1/5 border-r">
+    <div className="pr-3 lg:w-1/5 w-full border-r lg:px-1 px-4">
       <h2 className="text-2xl font-semibold lg:mb-4 my-2 ml-2">Filters</h2>
       <form ref={formRef} onSubmit={handleApplyFilters}>
-        <div className="mb-4 flex lg:flex-col gap-3">
+        <div className="lg:mb-4 mb-3 grid lg:grid-cols-1 md:grid-cols-3 grid-cols-2 lg:gap-3 gap-2">
           <Select
             label="Size"
             name="size"
@@ -144,10 +144,10 @@ const FilterPets: React.FC<FilterPetsProps> = ({ onFilter }) => {
           <Button
             color="primary"
             radius="sm"
-            size="md"
+            size="lg"
             type="submit"
             fullWidth
-            className="mt-4"
+            className="mt-1"
           >
             Set Filter
           </Button>

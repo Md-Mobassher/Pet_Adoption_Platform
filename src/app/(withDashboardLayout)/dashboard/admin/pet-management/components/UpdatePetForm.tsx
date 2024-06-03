@@ -13,6 +13,7 @@ import {
   Species,
   temperaments,
   adoptionRequirementss,
+  petGenders,
 } from "./pet.data";
 import { Button } from "@nextui-org/button";
 import { updatePet } from "../../adminAction/pet.action";
@@ -25,6 +26,7 @@ export default function UpdatePetForm({ onClose, data }: any) {
     species,
     breed,
     size,
+    gender,
     age,
     location,
     adoptionRequirements,
@@ -41,6 +43,7 @@ export default function UpdatePetForm({ onClose, data }: any) {
     species,
     breed,
     size,
+    gender,
     age,
     location,
     description,
@@ -208,6 +211,19 @@ export default function UpdatePetForm({ onClose, data }: any) {
             {petSizes.map((size) => (
               <SelectItem key={size.value} value={size.value}>
                 {size.label}
+              </SelectItem>
+            ))}
+          </Select>
+          <Select
+            label="Gender"
+            name="gender"
+            variant="bordered"
+            color="primary"
+            defaultSelectedKeys={[formData.gender]}
+          >
+            {petGenders.map((gender) => (
+              <SelectItem key={gender.value} value={gender.value}>
+                {gender.label}
               </SelectItem>
             ))}
           </Select>

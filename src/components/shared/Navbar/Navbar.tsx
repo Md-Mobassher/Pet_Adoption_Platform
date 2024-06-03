@@ -21,6 +21,7 @@ import { Button } from "@nextui-org/button";
 export default function NavigationBar({ user }: any) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const router = useRouter();
+
   const { setUser } = useAuth();
   const routeMap: Record<string, string> = {
     USER: "/dashboard",
@@ -32,27 +33,23 @@ export default function NavigationBar({ user }: any) {
     router.push("/");
   };
 
-  const menuItems = [
-    "Home",
-    "About",
-    "Pets",
-    "Dashboard",
-    "My Profile",
-    "Log Out",
-  ];
-
   return (
-    <Navbar maxWidth="2xl" className="container mx-auto ">
+    <Navbar
+      maxWidth="2xl"
+      className="container mx-auto "
+      shouldHideOnScroll
+      onMenuOpenChange={setIsMenuOpen}
+    >
       <NavbarBrand>
         <Link className="flex justify-start items-center" href="/">
-          <Cat className="size-10 mr-2 text-primary" />
-          <h1 className="font-bold lg:text-3xl text-2xl text-inherit">
+          <Cat className="lg:size-10 md:size-8 size-7 mr-2 text-primary" />
+          <h1 className="font-bold lg:text-3xl md:text-2xl text-xl text-inherit">
             <span className="text-primary">Pet</span> Adoption Platform
           </h1>
         </Link>
       </NavbarBrand>
 
-      <NavbarContent className="hidden sm:flex gap-4" justify="center">
+      <NavbarContent className="hidden lg:flex md:flex  gap-4" justify="center">
         <NavbarItem>
           <Link color="foreground" href="/">
             Home
@@ -82,11 +79,9 @@ export default function NavigationBar({ user }: any) {
           )}
         </NavbarItem>
       </NavbarContent>
-      <NavbarContent justify="end">
-        <NavbarItem>
-          <ThemeSwitcher />
-        </NavbarItem>
 
+      <NavbarContent className="hidden lg:flex  gap-4" justify="end">
+        <ThemeSwitcher />
         {user ? (
           <NavbarItem>
             <Button onClick={logOutUser} color="primary" variant="flat">
@@ -103,29 +98,56 @@ export default function NavigationBar({ user }: any) {
           </NavbarItem>
         )}
       </NavbarContent>
-      <NavbarContent className="sm:hidden" justify="end">
-        <NavbarMenuToggle
-          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-        />
-      </NavbarContent>
+
+      <NavbarMenuToggle
+        aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+        className="sm:hidden"
+      />
+
+      {/* mobile */}
       <NavbarMenu>
-        {menuItems.map((item, index) => (
-          <NavbarMenuItem key={`${item}-${index}`}>
-            <Link
-              className="w-full"
-              color={
-                index === 2
-                  ? "warning"
-                  : index === menuItems.length - 1
-                  ? "danger"
-                  : "foreground"
-              }
-              href="#"
-            >
-              {item}
+        <NavbarMenuItem>
+          <Link href={`/`}>Home</Link>
+        </NavbarMenuItem>
+        <NavbarMenuItem>
+          <Link color="foreground" href="/about">
+            About Us
+          </Link>
+        </NavbarMenuItem>
+        <NavbarMenuItem>
+          <Link href="/pets" color="foreground">
+            Pets
+          </Link>
+        </NavbarMenuItem>
+        <NavbarMenuItem>
+          {user && <Link href={routeMap[user?.role]}>Dashboard</Link>}
+        </NavbarMenuItem>
+        <NavbarMenuItem>
+          {user && user.role === "ADMIN" && (
+            <Link href="/dashboard/admin/my-profile">My Profile</Link>
+          )}
+        </NavbarMenuItem>
+        <NavbarMenuItem>
+          {user && user.role === "USER" && (
+            <Link href="/dashboard/my-profile">My Profile</Link>
+          )}
+        </NavbarMenuItem>
+        <NavbarMenuItem>
+          <ThemeSwitcher />
+        </NavbarMenuItem>
+        <NavbarMenuItem>
+          {user ? (
+            <Button onClick={logOutUser} color="primary" variant="flat">
+              Logout
+            </Button>
+          ) : (
+            <Link href="/login">
+              <Button onClick={logOutUser} color="primary" variant="flat">
+                Login
+              </Button>
             </Link>
-          </NavbarMenuItem>
-        ))}
+          )}
+        </NavbarMenuItem>
       </NavbarMenu>
     </Navbar>
   );

@@ -22,7 +22,7 @@ const PetMangementPage = async () => {
     <div>
       <div className="mt-5 mb-7">
         <h3 className="font-bold text-inherit px-4 text-3xl text-center">
-          <span className="text-primary">User</span> Management
+          <span className="text-primary">Pet</span> Management
         </h3>
       </div>
       <AddPet />

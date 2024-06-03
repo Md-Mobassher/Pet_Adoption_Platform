@@ -39,15 +39,16 @@ export async function updateUserStatus(
 export async function deleteUser(userId: string) {
   try {
     const accessToken = cookies().get("accessToken")?.value;
-    const headers = new Headers();
-    headers.append("Authorization", accessToken!);
-    headers.append("Content-Type", "application/json");
 
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_SERVER_URL}/users/${userId}`,
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/users/delete/${userId}`,
       {
         method: "DELETE",
-        headers: headers,
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `${accessToken}`,
+        },
+        cache: "no-store",
       }
     );
     revalidateTag("users");

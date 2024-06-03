@@ -25,7 +25,7 @@ export default function UpdateUserForm({ onClose, data }: any) {
 
   useEffect(() => {
     if (state && state?.success) {
-      console.log(state);
+      // console.log(state);
       toast.success(state.message, { id: 1, duration: 2000 });
       onClose();
     }
