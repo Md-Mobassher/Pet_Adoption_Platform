@@ -42,7 +42,7 @@ const MyAdoptedPetsPage = async () => {
           </div>
         )}
       </div>
-      <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 my-7 mx-auto">
+      <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 my-7 gap-5 mx-auto">
         {adoptedPets?.data?.length > 0 &&
           adoptedPets?.data?.map((adoptedpet: any) => (
             <div key={adoptedpet.id} className="mx-auto">
@@ -80,7 +80,7 @@ const MyAdoptedPetsPage = async () => {
                     </p>
                   </div>
 
-                  <div className="flex flex-wrap justify-between  text-md gap-3">
+                  <div className="flex flex-wrap justify-between  text-md gap-5">
                     <p className="font-semibold ">
                       <span className="font-semibold">Age:</span>{" "}
                       {adoptedpet?.pet?.age}{" "}
@@ -100,7 +100,7 @@ const MyAdoptedPetsPage = async () => {
                       <span className="font-semibold">Location:</span>{" "}
                       {adoptedpet?.pet?.location}{" "}
                     </p>
-                    <Link href={`/pets/${adoptedpet?.id}`}>
+                    <Link href={`/pets/${adoptedpet.petId}`}>
                       <Button
                         color="primary"
                         variant="bordered"

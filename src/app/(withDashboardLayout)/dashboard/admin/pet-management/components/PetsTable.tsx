@@ -25,11 +25,12 @@ const columns = [
   { name: "NAME", uid: "name" },
   { name: "Species", uid: "species" },
   { name: "Age", uid: "age" },
+  { name: "Gender", uid: "gender" },
   { name: "Size", uid: "size" },
   { name: "ACTIONS", uid: "actions" },
 ];
 
-interface PetData {
+export interface IPetData {
   id: string;
   name: string;
   species: string;
@@ -37,6 +38,7 @@ interface PetData {
   age: number;
   image: string;
   size: string;
+  gender: string;
   location: string;
   description: string;
   temperament: string[];
@@ -45,7 +47,7 @@ interface PetData {
 }
 
 interface PetTableProps {
-  data: PetData[];
+  data: IPetData[];
 }
 
 export default function PetsTable({ data }: PetTableProps) {
@@ -54,11 +56,11 @@ export default function PetsTable({ data }: PetTableProps) {
   const [action, setAction] = useState("");
   const { isOpen, onOpen, onClose, onOpenChange } = useDisclosure();
 
-  const handleDetails = (data: PetData) => {
+  const handleDetails = (data: IPetData) => {
     router.push(`/pets/${data.id}`);
   };
 
-  const handleUpdate = (data: PetData) => {
+  const handleUpdate = (data: IPetData) => {
     setAction("update");
     onOpen();
     setSelected(data);
@@ -71,8 +73,8 @@ export default function PetsTable({ data }: PetTableProps) {
   };
 
   const renderCell = React.useCallback(
-    (data: PetData, columnKey: React.Key) => {
-      const cellValue = data[columnKey as keyof PetData];
+    (data: IPetData, columnKey: React.Key) => {
+      const cellValue = data[columnKey as keyof IPetData];
 
       switch (columnKey) {
         case "name":
@@ -114,6 +116,12 @@ export default function PetsTable({ data }: PetTableProps) {
             </Chip>
           );
 
+        case "gender":
+          return (
+            <Chip className="capitalize" size="md" variant="flat">
+              {cellValue}
+            </Chip>
+          );
         case "size":
           return (
             <Chip className="capitalize" size="md" variant="flat">
@@ -198,7 +206,7 @@ export default function PetsTable({ data }: PetTableProps) {
           )}
         </TableHeader>
         <TableBody items={data}>
-          {(item: PetData) => (
+          {(item: IPetData) => (
             <TableRow key={item.id}>
               {(columnKey) => (
                 <TableCell key={columnKey.toString()}>

@@ -352,6 +352,16 @@
     "@nextui-org/system-rsc" "2.1.1"
     "@react-types/shared" "^3.22.1"
 
+"@nextui-org/divider@^2.0.28":
+  version "2.0.28"
+  resolved "https://registry.yarnpkg.com/@nextui-org/divider/-/divider-2.0.28.tgz#e574b5d212b0e81f78d8f9a54783ce9927b65582"
+  integrity sha512-IskKmDOO8qwmTO2WtDmrH8fZvnV2JebP3PFfwqpToAdDRbRUs78pls2e8/T9clbLLtNxjfCFAI/Yi9C+LPPEXw==
+  dependencies:
+    "@nextui-org/react-rsc-utils" "2.0.12"
+    "@nextui-org/shared-utils" "2.0.5"
+    "@nextui-org/system-rsc" "2.1.2"
+    "@react-types/shared" "3.22.1"
+
 "@nextui-org/dropdown@^2.1.23":
   version "2.1.23"
   resolved "https://registry.yarnpkg.com/@nextui-org/dropdown/-/dropdown-2.1.23.tgz#8ca87d598a92f1dd42b051d75b7b3f13074fbed1"
@@ -607,6 +617,13 @@
   version "2.1.1"
   resolved "https://registry.npmjs.org/@nextui-org/system-rsc/-/system-rsc-2.1.1.tgz"
   integrity sha512-gkTKNAbTZVl81SVJsaLHp4iqyd956y40UIGUXPeq0pwOGLM0xGWSkLbkNT8WtdPUt3bSD9y0xuKbiV3tpSBGOA==
+  dependencies:
+    clsx "^1.2.1"
+
+"@nextui-org/system-rsc@2.1.2":
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/@nextui-org/system-rsc/-/system-rsc-2.1.2.tgz#42b6568617018ec108cb60d22cb7bff96f6117b3"
+  integrity sha512-3F7pG68Ikh1JsMtRQqmyXAojAV4lMPCKCy0n8RiIxJkEJg11RGTXhnABHF2jP6uxMH/0q5zVzuFubQJfW++ISQ==
   dependencies:
     clsx "^1.2.1"
 
@@ -1431,6 +1448,11 @@
   integrity sha512-xI7dnOW2st91fPPcv6hdtrTdcfetYiqZuuVPZ5TRobY7Q10/Zqqe/KqtOw1zFKUj9xqNJe4Ov3xP5GSdcO60Eg==
   dependencies:
     "@react-types/shared" "^3.23.1"
+
+"@react-types/shared@3.22.1":
+  version "3.22.1"
+  resolved "https://registry.yarnpkg.com/@react-types/shared/-/shared-3.22.1.tgz#4e5de032fcb0b7bca50f6a9f8e133fd882821930"
+  integrity sha512-PCpa+Vo6BKnRMuOEzy5zAZ3/H5tnQg1e80khMhK2xys0j6ZqzkgQC+fHMNZ7VDFNLqqNMj/o0eVeSBDh2POjkw==
 
 "@react-types/shared@3.23.1", "@react-types/shared@^3.22.1", "@react-types/shared@^3.23.1":
   version "3.23.1"
