@@ -12,7 +12,7 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <footer className=" pt-8 pb-5  border-t  overflow-hidden  mt-10">
+    <footer className=" pt-8 pb-5  border-t  overflow-hidden  mt-10 card">
       <div className="container mx-auto">
         <div className="lg:flex md:flex  gap-5  justify-between  lg:items-start md:items-start items-center px-4 pb-3">
           <div className="flex-1 mb-3 lg:text-start md:text-start text-center">

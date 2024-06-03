@@ -115,7 +115,7 @@ const PetDetails = ({
             <p>Age: {petData?.age}</p>
             <p>Size: {petData?.size}</p>
             <p>Gender: {petData?.gender}</p>
-            <p>Location: {petData?.location}</p>
+            <p>Current location: {petData?.location}</p>
           </div>
           <div>
             <h3 className="text-xl font-semibold">Temperament</h3>
