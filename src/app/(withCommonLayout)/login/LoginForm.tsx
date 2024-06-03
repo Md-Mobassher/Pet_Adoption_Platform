@@ -9,37 +9,81 @@ import { loginUser } from "../actions/auth";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { EyeIcon, EyeOff } from "lucide-react";
+import { z } from "zod";
+
+const loginSchema = z.object({
+  email: z.string().email("Invalid email address"),
+  password: z.string().min(6, "Password must be at least 6 characters"),
+});
 
 export default function LoginForm() {
   const router = useRouter();
-  const ref = createRef<HTMLFormElement>();
-  const [state, formAction] = useFormState(loginUser, null);
-  const [isVisible, setIsVisible] = useState(false);
+  const formRef = createRef<HTMLFormElement>();
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+  const [isVisiblePass, setIsVisiblePass] = useState(false);
+  const [errors, setErrors] = useState<Record<string, any>>({});
 
-  const toggleVisibility = () => setIsVisible(!isVisible);
+  const handleVisibilityToggle = (field: string) => {
+    if (field === "password") {
+      setIsVisiblePass(!isVisiblePass);
+    }
+  };
 
-  useEffect(() => {
-    if (state && state?.success) {
-      toast.success(state?.message, { id: 1, duration: 3000 });
-      ref.current!.reset();
-      window.location.href = "/dashboard";
-      router.refresh();
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+      loginSchema.parse(formData);
+      const result = await loginUser(formData);
+
+      if (result.success) {
+        toast.success(result.message || "Successfully Login", {
+          id: 1,
+          duration: 3000,
+        });
+        formRef.current!.reset();
+        router.push("/");
+      } else {
+        toast.error(result.message, { id: 1, duration: 3000 });
+      }
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        const formattedErrors = error.format();
+        setErrors(formattedErrors);
+      } else {
+        toast.error("Registration failed", { id: 1, duration: 3000 });
+      }
     }
-    if (state && !state?.success) {
-      toast.error(state?.message, { id: 1, duration: 3000 });
-    }
-  }, [router, state, ref]);
+  };
 
   return (
     <div>
-      <form ref={ref} action={formAction}>
+      <form ref={formRef} onSubmit={handleSubmit}>
         <Input
+          className="mt-5"
           name="email"
           type="email"
           label="Email"
           variant="bordered"
           color="primary"
+          value={formData.email}
+          onChange={handleChange}
         />
+        {errors.email && (
+          <p className="text-red-600 text-sm my-2 pl-3">
+            {errors.email._errors[0]}
+          </p>
+        )}
 
         <Input
           className="mt-5"
@@ -51,17 +95,24 @@ export default function LoginForm() {
             <button
               className="focus:outline-none"
               type="button"
-              onClick={toggleVisibility}
+              onClick={() => handleVisibilityToggle("password")}
             >
-              {isVisible ? (
+              {isVisiblePass ? (
                 <EyeIcon className="text-2xl text-default-400 pointer-events-none" />
               ) : (
                 <EyeOff className="text-2xl text-default-400 pointer-events-none" />
               )}
             </button>
           }
-          type={isVisible ? "text" : "password"}
+          type={isVisiblePass ? "text" : "password"}
+          value={formData.password}
+          onChange={handleChange}
         />
+        {errors.password && (
+          <p className="text-red-600 text-sm my-2 pl-3">
+            {errors.password._errors[0]}
+          </p>
+        )}
         <div className="flex justify-end  my-3">
           Donot have an account?{" "}
           <Link className="text-primary ml-2" href="/register">

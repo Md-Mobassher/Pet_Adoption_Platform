@@ -9,7 +9,7 @@ export default function SubmitButton({ children }: { children: ReactNode }) {
   return (
     <Button disabled={pending} type="submit" color="primary" size="lg">
       {pending ? (
-        <div className="w-14 h-14 border-8 border-dashed rounded-full animate-spin mt-2 border-white"></div>
+        <div className="w-8 h-8 border-5 border-dashed rounded-full animate-spin border-white"></div>
       ) : (
         children
       )}

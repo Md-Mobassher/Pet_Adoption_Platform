@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import SearchPets from "./SearchPets";
 import FilterPets from "./FilterPets";
 import PetCard from "../pets/PetCard";
+import LoadingPage from "@/app/loading";
 
 export type TPet = {
   id: string;
@@ -41,6 +42,7 @@ const FindPets = () => {
   const [searchCriteria, setSearchCriteria] = useState<SearchCriteria>({});
   const [filterCriteria, setFilterCriteria] = useState<FilterCriteria>({});
   const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
 
   const fetchPets = async () => {
     try {
@@ -64,16 +66,19 @@ const FindPets = () => {
       );
 
       const result = await res.json();
-      console.log(result);
+      // console.log(result);
 
       if (result.data) {
         setPets(result.data);
+        setLoading(false);
       } else {
         setPets([]);
+        setLoading(false);
       }
     } catch (err) {
       console.log(err);
       setError("Failed to fetch pets");
+      setLoading(false);
     }
   };
 
@@ -95,19 +100,23 @@ const FindPets = () => {
       <div className="flex flex-col lg:flex-row lg:justify-between">
         <FilterPets onFilter={handleFilter} />
         <div className="flex-1">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 p-3">
-            {error ? (
-              <p className="text-red-600">{error}</p>
-            ) : pets.length > 0 ? (
-              pets.map((item) => <PetCard key={item.id} {...item} />)
-            ) : (
-              <div className="text-center">
-                <p className="text-red-500 text-xl font-semibold">
-                  No pets found
-                </p>
-              </div>
-            )}
-          </div>
+          {loading ? (
+            <LoadingPage />
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 p-3">
+              {pets.length > 0 ? (
+                pets.map((item) => <PetCard key={item.id} {...item} />)
+              ) : (
+                <div className="text-center">
+                  <p className="text-red-500 text-xl font-semibold">
+                    No pets found
+                  </p>
+                </div>
+              )}
+            </div>
+          )}
+
+          {error && <p className="text-red-600">{error}</p>}
         </div>
       </div>
     </div>

@@ -3,9 +3,9 @@
 import { jwtDecode } from "jwt-decode";
 import { cookies } from "next/headers";
 
-export async function loginUser(pre: FormData, formData: FormData) {
+export async function loginUser(data: Record<string, any>) {
   try {
-    const formattedData = JSON.stringify(Object?.fromEntries(formData));
+    const formattedData = JSON.stringify(data);
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_SERVER_URL}/auth/login`,
       {
@@ -14,17 +14,16 @@ export async function loginUser(pre: FormData, formData: FormData) {
           "Content-type": "application/json",
         },
         body: formattedData,
-        credentials: "include",
       }
     );
-    const data = await res.json();
-
-    if (data.success) {
-      cookies().set("accessToken", data?.data?.accessToken);
-      cookies().set("refreshToken", data?.data?.refreshToken);
-      return data;
+    const result = await res.json();
+    if (result.success) {
+      cookies().set("accessToken", result.data.accessToken);
+      cookies().set("refreshToken", result.data.refreshToken);
+      return result;
     }
-    return data;
+
+    return result;
   } catch (error) {
     throw error;
   }

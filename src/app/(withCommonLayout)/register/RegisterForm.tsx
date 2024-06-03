@@ -9,6 +9,7 @@ import { z } from "zod";
 import { Button } from "@nextui-org/button";
 import { signUpUser } from "../actions/auth";
 import { Input } from "@nextui-org/input";
+import SubmitButton from "@/components/ui/SubmitButton";
 
 const signUpSchema = z
   .object({
@@ -180,9 +181,7 @@ const RegisterForm = () => {
           </Link>
         </div>
         <div className="flex justify-end mt-5">
-          <Button type="submit" color="primary" size="lg">
-            Register
-          </Button>
+          <SubmitButton>Register</SubmitButton>
         </div>
       </form>
     </div>
