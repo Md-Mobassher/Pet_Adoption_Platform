@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import SearchPets from "./SearchPets";
 import FilterPets from "./FilterPets";
-import PetCard from "../pets/PetCard";
+import PetCard from "../pets/components/PetCard";
 import LoadingPage from "@/app/loading";
 
 export type TPet = {
@@ -105,7 +105,9 @@ const FindPets = () => {
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 p-3">
               {pets.length > 0 ? (
-                pets.map((item) => <PetCard key={item.id} {...item} />)
+                pets
+                  ?.slice(0, 6)
+                  .map((item) => <PetCard key={item.id} {...item} />)
               ) : (
                 <div className="text-center">
                   <p className="text-red-500 text-xl font-semibold">

@@ -1,11 +1,13 @@
-import Banner from "@/components/pages/home/Banner";
-import FIndPets from "@/components/pages/home/FindPets";
+import Banner from "@/app/(withCommonLayout)/home/Banner";
+import FIndPets from "@/app/(withCommonLayout)/home/FindPets";
+import AdoptSection from "./home/AdoptSection";
 
 const HomePage = () => {
   return (
     <>
       <Banner />
       <FIndPets />
+      <AdoptSection />
     </>
   );
 };

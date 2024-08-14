@@ -10,6 +10,7 @@ import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { EyeIcon, EyeOff } from "lucide-react";
 import { z } from "zod";
+import { Button } from "@nextui-org/button";
 
 const loginSchema = z.object({
   email: z.string().email("Invalid email address"),
@@ -119,7 +120,8 @@ export default function LoginForm() {
             Please Register
           </Link>
         </div>
-        <div className="flex justify-end mt-5">
+        <div className="flex justify-between mt-5">
+          <Button>Demo</Button>
           <SubmitButton>Login</SubmitButton>
         </div>
       </form>

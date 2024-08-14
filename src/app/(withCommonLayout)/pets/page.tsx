@@ -1,4 +1,4 @@
-import FIndPets from "@/components/pages/home/FindPets";
+import FIndPets from "@/app/(withCommonLayout)/home/FindPets";
 
 const AllPetsPage = async () => {
   return (

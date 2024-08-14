@@ -17,7 +17,7 @@ export default async function CommonLayout({
   return (
     <>
       <Navbar user={user} />
-      <div className="mx-auto container">{children}</div>
+      <div>{children}</div>
       <Footer />
     </>
   );

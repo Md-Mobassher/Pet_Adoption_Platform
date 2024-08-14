@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import bannerImg from "@/assets/images/banner.jpg";
-export default function BannerImage() {
+const BannerImage = () => {
   return (
     <motion.div
       initial={{ x: -100, y: -30 }}
@@ -20,4 +20,6 @@ export default function BannerImage() {
       />
     </motion.div>
   );
-}
+};
+
+export default BannerImage;
