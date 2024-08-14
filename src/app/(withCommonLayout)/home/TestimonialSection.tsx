@@ -3,12 +3,12 @@ import SubTitle from "@/components/ui/SubTitle";
 import Title from "@/components/ui/Title";
 import AchivementCard from "./AchivementCard";
 
-const AchivementSection = () => {
+const TestimonialSection = () => {
   return (
     <div className="mb-5">
       <PetContainer>
-        <Title title="Our Achievements" />
-        <SubTitle title="In less than one year, our team at Pawwelfare have rescued and found homes for more than 300 stray cats and dogs. We believe in making our world a better place for helpless animals." />
+        <Title title="Hear From Our Pet Parents" />
+        <SubTitle title="Don’t just take our word for it. Hear from over hundreds of pet owners who have rescued animals from our shelters." />
 
         <AchivementCard />
       </PetContainer>
@@ -16,4 +16,4 @@ const AchivementSection = () => {
   );
 };
 
-export default AchivementSection;
+export default TestimonialSection;

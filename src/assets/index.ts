@@ -6,6 +6,9 @@ const assets = {
     member: require("../assets/home/member.png"),
     happy: require("../assets/home/achivment.png"),
     customer: require("../assets/home/customer.png"),
+    donate: require("../assets/home/donate.png"),
+    donateBack: require("../assets/home/donateback (1).png"),
+    petparent: require("../assets/home/petParent.png"),
   },
 };
 

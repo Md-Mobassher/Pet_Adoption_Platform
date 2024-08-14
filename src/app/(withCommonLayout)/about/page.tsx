@@ -1,9 +1,9 @@
 import { Card, CardBody } from "@nextui-org/card";
 import Link from "next/link";
-import Purpose from "@/components/pages/about/Purpose";
-import Mission from "@/components/pages/about/Mission";
-import TeamInfo from "@/components/pages/about/TeamInfo";
-import ContactInfo from "@/components/pages/about/ContactInfo";
+import Purpose from "@/app/(withCommonLayout)/about/components/Purpose";
+import Mission from "@/app/(withCommonLayout)/about/components/Mission";
+import TeamInfo from "@/app/(withCommonLayout)/about/components/TeamInfo";
+import ContactInfo from "@/app/(withCommonLayout)/about/components/ContactInfo";
 
 const AboutPage = () => {
   return (

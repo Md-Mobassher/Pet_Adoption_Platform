@@ -6,7 +6,7 @@ import CountUp from "react-countup";
 
 const AchivementCard = () => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:gap-10 md:gap-8 gap-6 mt-10 ">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:gap-10 md:gap-8 gap-6 lg:mt-10 md:mt-8 mt-6">
       <div className="w-[80%] mx-auto lg:w-full md:w-full flex justify-between items-center gap-5 p-12 rounded-lg shadow-xl border border-slate-200">
         <div className={`bg-[#FEEFD8] rounded-lg p-5`}>
           <Image
