@@ -20,6 +20,7 @@ const AchivementCard = () => {
           <CountUp
             end={1280}
             duration={4}
+            delay={2}
             className={`lg:text-5xl text-3xl font-bold text-[#FFA24C] text-center`}
           />
           <h4 className="text-2xl font-semibold mt-3 ">Memberships</h4>
@@ -37,8 +38,9 @@ const AchivementCard = () => {
         </div>
         <div className="flex flex-col justify-center items-center">
           <CountUp
-            end={1280}
+            end={385}
             duration={4}
+            delay={2}
             className={`lg:text-5xl text-3xl font-bold text-[#1999FB] text-center`}
           />
           <h4 className="text-2xl font-semibold mt-3 ">Happy Pets</h4>
@@ -56,8 +58,9 @@ const AchivementCard = () => {
         </div>
         <div className="flex flex-col justify-center items-center">
           <CountUp
-            end={1280}
+            end={963}
             duration={4}
+            delay={2}
             className={`lg:text-5xl text-3xl font-bold text-[#E82A34] text-center`}
           />
           <h4 className="text-2xl font-semibold mt-3 ">Customers</h4>

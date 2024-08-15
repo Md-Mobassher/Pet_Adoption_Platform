@@ -5,17 +5,20 @@ import AchivementSection from "./home/AchivementSection";
 import DonateSection from "./home/DonateSection";
 import TestimonialSection from "./home/TestimonialSection";
 import BecomePetParent from "./home/BecomePetParent";
+import GetInTouch from "./home/GetInTouch";
+import AvailablePets from "./home/AvailablePets";
 
 const HomePage = () => {
   return (
     <>
       <Banner />
-      <FIndPets />
+      <AvailablePets />
       <AdoptSection />
       <AchivementSection />
       <DonateSection />
       <TestimonialSection />
       <BecomePetParent />
+      <GetInTouch />
     </>
   );
 };

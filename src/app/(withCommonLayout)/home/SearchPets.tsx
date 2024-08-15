@@ -1,10 +1,5 @@
 "use client";
 
-import {
-  petBreeds,
-  petSpecies,
-  Species,
-} from "@/app/(withDashboardLayout)/dashboard/admin/pet-management/components/pet.data";
 import { Button } from "@nextui-org/button";
 import { Input } from "@nextui-org/input";
 import { Select, SelectItem } from "@nextui-org/select";
@@ -15,7 +10,6 @@ interface SearchPetsProps {
 }
 
 const SearchPets: React.FC<SearchPetsProps> = ({ onSearch }) => {
-  const [selectedSpecies, setSelectedSpecies] = useState<Species | "">("");
   const formRef = useRef<HTMLFormElement>(null);
   const [formData, setFormData] = useState({
     species: "",
@@ -52,50 +46,33 @@ const SearchPets: React.FC<SearchPetsProps> = ({ onSearch }) => {
       age: "",
       location: "",
     });
-    setSelectedSpecies("");
   };
 
   return (
     <form ref={formRef} onSubmit={handleSearch}>
-      <div className=" grid lg:grid-cols-5  md:grid-cols-5 grid-cols-3 lg:pb-6 pb-3 lg:gap-5 md:gap-3 gap-2 px-4 lg:border-b">
-        <Select
+      <div className=" flex flex-wrap justify-between items-center lg:pb-10 md:pb-8 pb-5 lg:gap-5 md:gap-3 gap-2 px-4 ">
+        <Input
           label="Species"
           name="species"
           variant="bordered"
           color="primary"
-          placeholder="Select a pet type"
+          placeholder="Enter pet type"
           onChange={(e) => {
             handleInputChange(e);
-            setSelectedSpecies(e.target.value as Species);
           }}
-        >
-          {petSpecies.map((specie) => (
-            <SelectItem key={specie.value} value={specie.value}>
-              {specie.label}
-            </SelectItem>
-          ))}
-        </Select>
-
-        <Select
+          className="lg:w-[21%] md:w-[21%] w-[45%]"
+        />
+        <Input
           label="Breed"
           name="breed"
           variant="bordered"
           color="primary"
-          placeholder="Select a pet Breed"
-          onChange={handleInputChange}
-        >
-          {selectedSpecies
-            ? petBreeds[selectedSpecies].map((breed) => (
-                <SelectItem key={breed.value} value={breed.value}>
-                  {breed.label}
-                </SelectItem>
-              ))
-            : petBreeds?.Dog?.map((breed) => (
-                <SelectItem key={breed.value} value={breed.value}>
-                  {breed.label}
-                </SelectItem>
-              ))}
-        </Select>
+          placeholder="Enter pet breed"
+          onChange={(e) => {
+            handleInputChange(e);
+          }}
+          className="lg:w-[21%] md:w-[21%] w-[45%]"
+        />
 
         <Input
           type="number"
@@ -106,6 +83,7 @@ const SearchPets: React.FC<SearchPetsProps> = ({ onSearch }) => {
           name="age"
           placeholder="Enter an age"
           onChange={handleInputChange}
+          className="lg:w-[21%] md:w-[21%] w-[45%]"
         />
 
         <Input
@@ -117,6 +95,7 @@ const SearchPets: React.FC<SearchPetsProps> = ({ onSearch }) => {
           name="location"
           placeholder="Enter a location"
           onChange={handleInputChange}
+          className="lg:w-[21%] md:w-[21%] w-[45%]"
         />
 
         <Button color="primary" radius="sm" size="lg" type="submit">

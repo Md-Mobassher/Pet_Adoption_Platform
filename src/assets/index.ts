@@ -9,6 +9,7 @@ const assets = {
     donate: require("../assets/home/donate.png"),
     donateBack: require("../assets/home/donateback (1).png"),
     petparent: require("../assets/home/petParent.png"),
+    getTouch: require("../assets/home/getinTouch.png"),
   },
 };
 

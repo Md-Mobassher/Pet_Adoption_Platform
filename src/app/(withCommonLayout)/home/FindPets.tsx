@@ -5,6 +5,7 @@ import SearchPets from "./SearchPets";
 import FilterPets from "./FilterPets";
 import PetCard from "../pets/components/PetCard";
 import LoadingPage from "@/app/loading";
+import PetContainer from "@/components/ui/PetContainer";
 
 export type TPet = {
   id: string;
@@ -22,14 +23,14 @@ export type TPet = {
   image: string;
 };
 
-type SearchCriteria = {
+export type SearchCriteria = {
   species?: string;
   breed?: string;
   age?: string;
   location?: string;
 };
 
-type FilterCriteria = {
+export type FilterCriteria = {
   size?: string;
   gender?: string;
   medicalHistory?: string[];
@@ -96,31 +97,33 @@ const FindPets = () => {
 
   return (
     <div className="py-5">
-      <SearchPets onSearch={handleSearch} />
-      <div className="flex flex-col lg:flex-row lg:justify-between">
-        <FilterPets onFilter={handleFilter} />
-        <div className="flex-1">
-          {loading ? (
-            <LoadingPage />
-          ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 p-3">
-              {pets.length > 0 ? (
-                pets
-                  ?.slice(0, 6)
-                  .map((item) => <PetCard key={item.id} {...item} />)
-              ) : (
-                <div className="text-center">
-                  <p className="text-red-500 text-xl font-semibold">
-                    No pets found
-                  </p>
-                </div>
-              )}
-            </div>
-          )}
+      <PetContainer>
+        <SearchPets onSearch={handleSearch} />
+        <div className="flex flex-col lg:flex-row lg:justify-between">
+          <FilterPets onFilter={handleFilter} />
+          <div className="flex-1">
+            {loading ? (
+              <LoadingPage />
+            ) : (
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 p-3">
+                {pets.length > 0 ? (
+                  pets
+                    ?.slice(0, 6)
+                    .map((item) => <PetCard key={item.id} {...item} />)
+                ) : (
+                  <div className="text-center">
+                    <p className="text-red-500 text-xl font-semibold">
+                      No pets found
+                    </p>
+                  </div>
+                )}
+              </div>
+            )}
 
-          {error && <p className="text-red-600">{error}</p>}
+            {error && <p className="text-red-600">{error}</p>}
+          </div>
         </div>
-      </div>
+      </PetContainer>
     </div>
   );
 };
