@@ -14,7 +14,7 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <footer className=" pt-8 pb-5  border-t  overflow-hidden  mt-10 card bg-content1">
+    <footer className=" pt-8 pb-5  border-t  overflow-hidden mt-5 card bg-content1">
       <div className="container mx-auto">
         <div className="flex lg:flex-row md:flex-row flex-col lg:gap-5 md:gap-4 gap-2 justify-between  lg:items-start md:items-start items-center px-4 pb-3 flex-wrap">
           {/* logo */}
@@ -25,7 +25,7 @@ const Footer = () => {
             >
               <Image src={assets.logo} alt="logo" className="" width={200} />
             </Link>
-            <p className="mt-3 text-gray-500">
+            <p className="mt-3 ">
               Discover your perfect furry companion with our comprehensive pet
               adoption platform, connecting loving homes with adorable pets in
               need. Find your new best friend today!

@@ -39,7 +39,7 @@ export default function NavigationBar({ user }: any) {
     <div className="bg-content1">
       <Navbar
         maxWidth="2xl"
-        className="container mx-auto "
+        className="container mx-auto bg-content1"
         shouldHideOnScroll
         onMenuOpenChange={setIsMenuOpen}
       >

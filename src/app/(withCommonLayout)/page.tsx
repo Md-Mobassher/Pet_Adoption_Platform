@@ -1,5 +1,5 @@
 import Banner from "@/app/(withCommonLayout)/home/Banner";
-import FIndPets from "@/app/(withCommonLayout)/home/FindPets";
+import FIndPets from "@/app/(withCommonLayout)/pets/components/FindPets";
 import AdoptSection from "./home/AdoptSection";
 import AchivementSection from "./home/AchivementSection";
 import DonateSection from "./home/DonateSection";

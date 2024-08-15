@@ -3,11 +3,12 @@ import Link from "next/link";
 import Purpose from "@/app/(withCommonLayout)/about/components/Purpose";
 import Mission from "@/app/(withCommonLayout)/about/components/Mission";
 import TeamInfo from "@/app/(withCommonLayout)/about/components/TeamInfo";
-import ContactInfo from "@/app/(withCommonLayout)/about/components/ContactInfo";
+import ContactInfo from "@/app/(withCommonLayout)/contact/components/ContactInfo";
+import GetInTouch from "../home/GetInTouch";
 
 const AboutPage = () => {
   return (
-    <div className="lg:p-6 px-4">
+    <div className="mt-4">
       <div className="container mx-auto">
         <h1 className="text-4xl font-bold text-center mb-6">
           <span className="text-primary">About</span> Us
@@ -19,7 +20,7 @@ const AboutPage = () => {
 
       <TeamInfo />
 
-      <ContactInfo />
+      <GetInTouch />
     </div>
   );
 };

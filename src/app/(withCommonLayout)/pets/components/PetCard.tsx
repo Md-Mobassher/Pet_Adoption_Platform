@@ -1,23 +1,10 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Card, CardBody } from "@nextui-org/card";
+import { Card } from "@nextui-org/card";
 import { Button } from "@nextui-org/button";
 
-const PetCard = ({
-  id,
-  image,
-  name,
-  species,
-  description,
-  age,
-  breed,
-  location,
-}: any) => {
-  // const handlePetDetails = (id: string) => {
-
-  // };
-
+const PetCard = ({ id, image, name, species, age, breed, location }: any) => {
   return (
     <Card className="relative group min-w-sm w-full h-96 overflow-hidden rounded-lg border hover:shadow-2xl hover:border-primary">
       {/* Pet Image */}

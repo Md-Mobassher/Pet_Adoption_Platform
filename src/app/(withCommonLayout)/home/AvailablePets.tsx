@@ -1,8 +1,8 @@
 "use client";
 import PetContainer from "@/components/ui/PetContainer";
-import SearchPets from "./SearchPets";
+import SearchPets from "../pets/components/SearchPets";
 import { useEffect, useState } from "react";
-import { SearchCriteria, TPet } from "./FindPets";
+import { SearchCriteria, TPet } from "../pets/components/FindPets";
 import LoadingPage from "@/app/loading";
 import PetCard from "../pets/components/PetCard";
 

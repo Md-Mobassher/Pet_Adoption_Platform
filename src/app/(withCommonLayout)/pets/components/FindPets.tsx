@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import SearchPets from "./SearchPets";
 import FilterPets from "./FilterPets";
-import PetCard from "../pets/components/PetCard";
+import PetCard from "./PetCard";
 import LoadingPage from "@/app/loading";
 import PetContainer from "@/components/ui/PetContainer";
 
@@ -96,7 +96,7 @@ const FindPets = () => {
   };
 
   return (
-    <div className="py-5">
+    <div className="">
       <PetContainer>
         <SearchPets onSearch={handleSearch} />
         <div className="flex flex-col lg:flex-row lg:justify-between">
@@ -108,7 +108,7 @@ const FindPets = () => {
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 p-3">
                 {pets.length > 0 ? (
                   pets
-                    ?.slice(0, 6)
+                    ?.slice(0, 9)
                     .map((item) => <PetCard key={item.id} {...item} />)
                 ) : (
                   <div className="text-center">
