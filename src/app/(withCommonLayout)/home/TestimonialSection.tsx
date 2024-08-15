@@ -1,7 +1,7 @@
 import PetContainer from "@/components/ui/PetContainer";
 import SubTitle from "@/components/ui/SubTitle";
 import Title from "@/components/ui/Title";
-import AchivementCard from "./AchivementCard";
+import Testimonials from "./Testimonials";
 
 const TestimonialSection = () => {
   return (
@@ -10,7 +10,7 @@ const TestimonialSection = () => {
         <Title title="Hear From Our Pet Parents" />
         <SubTitle title="Don’t just take our word for it. Hear from over hundreds of pet owners who have rescued animals from our shelters." />
 
-        <AchivementCard />
+        <Testimonials />
       </PetContainer>
     </div>
   );

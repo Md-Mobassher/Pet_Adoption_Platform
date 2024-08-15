@@ -82,9 +82,9 @@ const AvailablePets = () => {
                       ?.slice(0, 6)
                       .map((item: TPet) => <PetCard key={item.id} {...item} />)
                   ) : (
-                    <div className="text-center">
-                      <p className="text-red-500 text-xl font-semibold">
-                        No pets found
+                    <div className="lg:w-[1200px] md:w-[800px] w-full flex justify-center items-center">
+                      <p className="text-red-500 text-xl font-semibold text-center">
+                        No Available Pets Found
                       </p>
                     </div>
                   )}

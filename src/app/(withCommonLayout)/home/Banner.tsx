@@ -1,30 +1,85 @@
-import { Card, CardBody } from "@nextui-org/card";
-import BannerButton from "./BannerButton";
-import BannerImage from "./BannerImage";
+"use client";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import { Autoplay } from "swiper/modules";
+import assets from "@/assets";
+import Image from "next/image";
+import Link from "next/link";
+
+const bannerData = [
+  {
+    _id: "1",
+    title: "Find Your Perfect Pet",
+    description:
+      "Join thousands of happy pet owners who found their perfect furry friend through our platform. Browse, connect, and bring home a pet today!",
+    img: assets.banner.b1,
+    ctaText: "Browse Pets",
+    ctaLink: "/pets",
+  },
+  {
+    _id: "2",
+    title: "Save a Life, Adopt Today",
+    description:
+      "Every adoption saves a life. Explore our database of loving animals waiting for a forever home and give them the love they deserve.",
+    img: assets.banner.b2,
+    ctaText: "Start Your Journey",
+    ctaLink: "/pets",
+  },
+  {
+    _id: "3",
+    title: "Become a Volunteer",
+    description:
+      "Join our community of volunteers who are passionate about making a difference. Your time and effort can help save countless animals.",
+    img: assets.banner.b1,
+    ctaText: "Register",
+    ctaLink: "/register",
+  },
+];
 
 export default function Banner() {
   return (
-    <Card className="lg:py-10 py-4 flex lg:px-4 px-3" shadow="none">
-      <CardBody className="overflow-visible py-2 ">
-        <div className="lg:flex md:flex items-center justify-between gap-10 w-full">
-          <BannerImage />
-          <div className="lg:w-2/5 md:w-2/3">
-            <h1 className="lg:text-5xl md:text-4xl text-3xl lg:text-start md:text-start text-center font-bold mb-2 text-default-800 ">
-              Find Your Perfect <span className="text-primary">Pet</span>{" "}
-              Companion Today!
-            </h1>
-            <h4 className=" lg:text-xl text-md text-gray-500 my-5">
-              Explore our extensive network of shelters and rescues to find your
-              new best friend. With our easy-to-use platform, you can browse,
-              connect, and adopt your ideal pet with just a few clicks. Start
-              your journey towards a loving home and a happy pet now!
-            </h4>
-            <div className="flex lg:justify-start md:justify-start justify-center">
-              <BannerButton />
+    <div>
+      <Swiper
+        spaceBetween={50}
+        slidesPerView={1}
+        autoplay={{
+          delay: 2500,
+        }}
+        loop={true}
+        modules={[Autoplay]}
+      >
+        {bannerData?.map((banner) => (
+          <SwiperSlide key={banner._id}>
+            <div className="relative h-[560px] w-full">
+              <Image
+                src={banner.img}
+                alt={banner.title || "banner"}
+                layout="fill"
+                objectFit="cover"
+                className="z-0"
+              />
+              <div className="absolute inset-0 flex flex-col justify-center lg:items-start md:items-start items-center text-center bg-black bg-opacity-50 z-10 lg:px-20 md:px-10 px-4 ">
+                <div className="max-w-xl">
+                  <h1 className="lg:text-5xl text-4xl font-bold text-white mb-4 lg:text-start md:text-start text-center">
+                    {banner.title}
+                  </h1>
+                  <p className="text-lg text-white my-5  lg:text-start md:text-start text-center">
+                    {banner.description}
+                  </p>
+                  <div className="lg:mt-16 md:mt-14 mt-12 lg:text-start md:text-start text-center">
+                    <Link
+                      href={banner.ctaLink}
+                      className="px-6 py-4 bg-primary text-white font-semibold rounded-lg hover:bg-primary-dark transition inline"
+                    >
+                      {banner.ctaText}
+                    </Link>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-      </CardBody>
-    </Card>
+          </SwiperSlide>
+        ))}
+      </Swiper>
+    </div>
   );
 }
