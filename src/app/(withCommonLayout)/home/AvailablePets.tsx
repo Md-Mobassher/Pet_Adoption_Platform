@@ -32,7 +32,7 @@ const AvailablePets = () => {
       );
 
       const result = await res.json();
-      // console.log(result);
+      console.log(result);
 
       if (result.data) {
         setPets(result.data);
@@ -71,7 +71,7 @@ const AvailablePets = () => {
         {/*available pets */}
         <div className="lg:mt-8 md:mt-7 mt-5">
           <SearchPets onSearch={handleSearch} />
-          <div className="flex flex-col lg:flex-row lg:justify-between">
+          <div className="">
             <div className="">
               {loading ? (
                 <LoadingPage />

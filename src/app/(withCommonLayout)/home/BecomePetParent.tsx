@@ -5,7 +5,7 @@ import PetContainer from "@/components/ui/PetContainer";
 
 const BecomePetParent = () => {
   return (
-    <div className="  bg-slate-100">
+    <div className="  bg-content1">
       <PetContainer>
         <div className=" py-2 ">
           <div className="flex lg:flex-row md:flex-row flex-col items-center justify-evenly lg:gap-10 md:gap-8 gap-6 w-full">

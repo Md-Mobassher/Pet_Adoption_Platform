@@ -1,3 +1,4 @@
+import assets from "@/assets";
 import {
   Cat,
   Facebook,
@@ -8,48 +9,48 @@ import {
   Smartphone,
   Twitter,
 } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 
 const Footer = () => {
   return (
-    <footer className=" pt-8 pb-5  border-t  overflow-hidden  mt-10 card bg-slate-100">
+    <footer className=" pt-8 pb-5  border-t  overflow-hidden  mt-10 card bg-content1">
       <div className="container mx-auto">
-        <div className="lg:flex md:flex  gap-5  justify-between  lg:items-start md:items-start items-center px-4 pb-3">
+        <div className="flex lg:flex-row md:flex-row flex-col lg:gap-5 md:gap-4 gap-2 justify-between  lg:items-start md:items-start items-center px-4 pb-3 flex-wrap">
+          {/* logo */}
           <div className="flex-1 mb-3 lg:text-start md:text-start text-center">
             <Link
               className="flex lg:justify-start md:justify-start justify-center items-center"
               href="/"
             >
-              <Cat className="size-8 mr-2 text-primary" />
-              <h1 className="font-bold lg:text-3xl text-2xl text-inherit">
-                <span className="text-primary">Pet</span> Adoption Platform
-              </h1>
+              <Image src={assets.logo} alt="logo" className="" width={200} />
             </Link>
-            <p className="mt-3">
+            <p className="mt-3 text-gray-500">
               Discover your perfect furry companion with our comprehensive pet
               adoption platform, connecting loving homes with adorable pets in
               need. Find your new best friend today!
             </p>
           </div>
 
-          <div className="flex-1 flex-col gap-5 justify-center items-center pb-5 ml-5">
+          {/* contact */}
+          <div className="flex flex-1 flex-col gap-5 justify-start items-center pb-5 ml-5">
             <h1 className="text-2xl font-bold text-center">
               <span className="text-primary">Contact </span> Info
             </h1>
-            <div className="mt-3">
-              <h1 className="font-semibold flex gap-5 mb-3">
+            <div className="lg:mt-3 md:mt-3">
+              <h1 className=" flex gap-5 mb-3">
                 <span>
                   <MailOpen className="size-6 " />
                 </span>
                 mdmobassherhossain1@gmail.com
               </h1>
-              <h1 className="font-semibold flex gap-5 mb-3">
+              <h1 className=" flex gap-5 mb-3">
                 <span>
                   <Smartphone className="size-6 " />
                 </span>
                 +8801706060647
               </h1>
-              <h1 className="font-semibold flex gap-5 mb-3">
+              <h1 className=" flex gap-5 mb-3">
                 <span>
                   <MapPin className="size-6 " />
                 </span>
@@ -57,34 +58,59 @@ const Footer = () => {
               </h1>
             </div>
           </div>
-          <div className="flex-1 flex-col gap-5 justify-center items-center pb-5">
+
+          {/* link */}
+          <div className="flex flex-1 flex-col gap-5 justify-center items-center pb-5 min-w-32">
             <h1 className="text-2xl font-bold text-center">
-              <span className="text-primary">Follow us </span> on social media
+              <span className="text-primary">Link</span>
+            </h1>
+            <div className="justify-start items-center lg:mt-3 md:mt-3">
+              <div className="flex flex-col gap-1 ">
+                <Link href="/about" className="hover:text-primary">
+                  About Us
+                </Link>
+                <Link href="/pets" className="hover:text-primary">
+                  Pets
+                </Link>
+                <Link href="/contact" className="hover:text-primary">
+                  Contact
+                </Link>
+                <Link href="/login" className="hover:text-primary">
+                  Login
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          {/* social media */}
+          <div className="flex flex-1 flex-col gap-5 justify-center items-center pb-5">
+            <h1 className="text-2xl font-bold text-center">
+              <span className="text-primary">Social</span> Media
             </h1>
             <div className="flex gap-4 justify-center items-center mt-3">
               <Link
                 href="https://www.facebook.com/mdmobassherf"
                 target="_blank"
               >
-                <Facebook className="border text-primary border-primary hover:bg-primary hover:text-white size-10 rounded" />
+                <Facebook className="border text-primary border-primary hover:bg-primary hover:text-white lg:size-9 md:size-8 size-7 rounded" />
               </Link>
               <Link
                 href="https://www.facebook.com/mdmobassherf"
                 target="_blank"
               >
-                <Linkedin className="border text-primary border-primary hover:bg-primary hover:text-white size-10 rounded" />
+                <Linkedin className="border text-primary border-primary hover:bg-primary hover:text-white lg:size-9 md:size-8 size-7 rounded" />
               </Link>
               <Link
                 href="https://www.facebook.com/mdmobassherf"
                 target="_blank"
               >
-                <Github className="border text-primary border-primary hover:bg-primary hover:text-white size-10 rounded" />
+                <Github className="border text-primary border-primary hover:bg-primary hover:text-white lg:size-9 md:size-8 size-7 rounded" />
               </Link>
               <Link
                 href="https://www.facebook.com/mdmobassherf"
                 target="_blank"
               >
-                <Twitter className="border text-primary border-primary hover:bg-primary hover:text-white size-10 rounded" />
+                <Twitter className="border text-primary border-primary hover:bg-primary hover:text-white lg:size-9 md:size-8 size-7 rounded" />
               </Link>
             </div>
           </div>
@@ -99,7 +125,7 @@ const Footer = () => {
           <p className="text-center">
             Design & Developed by{" "}
             <Link
-              href="https://dev-mobassher.web.app"
+              href="https://mobassher.vercel.app"
               target="_blank"
               rel="noreferrer"
               className="text-primary"

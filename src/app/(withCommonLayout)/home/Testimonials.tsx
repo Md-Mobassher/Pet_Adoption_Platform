@@ -34,28 +34,28 @@ const testimonialData = [
 
 const Testimonials = () => {
   return (
-    <div className="relative mt-16">
+    <div className="lg:relative mt-12">
       {/* <Image
         src={assets.testimonial.test4}
         alt={"customer"}
-        className="absolute  lg:top-0 md:top-0 lg:left-20 md:left-16 -left-20"
+        className="lg:absolute md:absolute  lg:top-0 md:top-0 lg:left-20 md:left-16 -left-20"
       />
       <Image
         src={assets.testimonial.test5}
         alt={"customer"}
-        className="absolute  lg:bottom-5 md:bottom-0 lg:left-0 md:left-10 -left-20"
+        className="lg:absolute md:absolute  lg:bottom-5 md:bottom-0 lg:left-0 md:left-10 -left-20"
       />
       <Image
         src={assets.testimonial.test6}
         alt={"customer"}
-        className="absolute bottom-3 left-5"
+        className="lg:absolute md:absolute bottom-3 left-5"
       />
       <Image
         src={assets.testimonial.test7}
         alt={"customer"}
-        className="absolute bottom-0 right-5"
+        className="lg:absolute md:absolute bottom-0 right-5"
       /> */}
-      <div className="mt-5 max-w-xl mx-auto">
+      <div className=" max-w-xl mx-auto">
         <Swiper
           spaceBetween={50}
           slidesPerView={1}
@@ -75,8 +75,10 @@ const Testimonials = () => {
                   />
                 </div>
                 <div className="flex flex-col justify-center items-center gap-3">
-                  <p className="text-center">{testimonial.opinion}</p>
-                  <h3 className="text-2xl font-bold mt-2">
+                  <p className="text-center text-gray-500">
+                    {testimonial.opinion}
+                  </p>
+                  <h3 className="text-2xl font-bold mt-2 ">
                     {testimonial.name}
                   </h3>
                   <h4 className="text-lg font-semibold text-gray-500">

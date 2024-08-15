@@ -30,7 +30,7 @@ const bannerData = [
     title: "Become a Volunteer",
     description:
       "Join our community of volunteers who are passionate about making a difference. Your time and effort can help save countless animals.",
-    img: assets.banner.b1,
+    img: assets.banner.b3,
     ctaText: "Register",
     ctaLink: "/register",
   },

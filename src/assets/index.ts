@@ -23,6 +23,7 @@ const assets = {
   banner: {
     b1: require("../assets/home/s1.jpg"),
     b2: require("../assets/home/s2.jpg"),
+    b3: require("../assets/home/s3.png"),
   },
 };
 

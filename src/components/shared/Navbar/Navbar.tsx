@@ -36,7 +36,7 @@ export default function NavigationBar({ user }: any) {
   };
 
   return (
-    <div className="bg-white py-1">
+    <div className="bg-content1">
       <Navbar
         maxWidth="2xl"
         className="container mx-auto "
