@@ -70,7 +70,7 @@ export default function LoginForm() {
         const formattedErrors = error.format();
         setErrors(formattedErrors);
       } else {
-        toast.error("Registration failed", { id: 1, duration: 3000 });
+        toast.error("Login failed", { id: 1, duration: 3000 });
       }
     }
   };
