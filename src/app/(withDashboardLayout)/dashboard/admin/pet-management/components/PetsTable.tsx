@@ -1,7 +1,7 @@
 "use client";
 
 import { Edit, EyeIcon, Trash } from "lucide-react";
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import CustomModal from "../../../../components/modal/CustomModal";
 import { ModalHeader, useDisclosure } from "@nextui-org/modal";
 import { User } from "@nextui-org/user";
@@ -56,23 +56,32 @@ export default function PetsTable({ data }: PetTableProps) {
   const [action, setAction] = useState("");
   const { isOpen, onOpen, onClose, onOpenChange } = useDisclosure();
 
-  const handleDetails = (data: IPetData) => {
-    router.push(`/pets/${data.id}`);
-  };
+  const handleDetails = useCallback(
+    (data: IPetData) => {
+      router.push(`/pets/${data.id}`);
+    },
+    [router]
+  );
 
-  const handleUpdate = (data: IPetData) => {
-    setAction("update");
-    onOpen();
-    setSelected(data);
-  };
+  const handleUpdate = useCallback(
+    (data: IPetData) => {
+      setAction("update");
+      onOpen();
+      setSelected(data);
+    },
+    [onOpen]
+  );
 
-  const handleDelete = (id: string) => {
-    setAction("delete");
-    onOpen();
-    setSelected(id);
-  };
+  const handleDelete = useCallback(
+    (id: string) => {
+      setAction("delete");
+      onOpen();
+      setSelected(id);
+    },
+    [onOpen]
+  );
 
-  const renderCell = React.useCallback(
+  const renderCell = useCallback(
     (data: IPetData, columnKey: React.Key) => {
       const cellValue = data[columnKey as keyof IPetData];
 
@@ -96,7 +105,6 @@ export default function PetsTable({ data }: PetTableProps) {
           return (
             <Chip
               className="capitalize"
-              // color={roleColorMap[data.species]}
               color="default"
               size="md"
               variant="flat"
@@ -106,16 +114,10 @@ export default function PetsTable({ data }: PetTableProps) {
           );
         case "breed":
           return (
-            <Chip
-              className="capitalize"
-              // color={statusColorMap[data.status]}
-              size="sm"
-              variant="flat"
-            >
+            <Chip className="capitalize" size="sm" variant="flat">
               {cellValue}
             </Chip>
           );
-
         case "gender":
           return (
             <Chip className="capitalize" size="md" variant="flat">
@@ -152,7 +154,7 @@ export default function PetsTable({ data }: PetTableProps) {
           return cellValue;
       }
     },
-    []
+    [handleDetails, handleUpdate, handleDelete]
   );
 
   return (

@@ -12,43 +12,42 @@ const AvailablePets = () => {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
-  const fetchPets = async () => {
-    try {
-      const params = new URLSearchParams();
+  useEffect(() => {
+    const fetchPets = async () => {
+      try {
+        const params = new URLSearchParams();
 
-      Object.entries({ ...searchCriteria }).forEach(([key, value]) => {
-        if (Array.isArray(value)) {
-          value.forEach((val) => params.append(key, val));
-        } else if (value) {
-          params.append(key, value);
+        Object.entries({ ...searchCriteria }).forEach(([key, value]) => {
+          if (Array.isArray(value)) {
+            value.forEach((val) => params.append(key, val));
+          } else if (value) {
+            params.append(key, value);
+          }
+        });
+
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_SERVER_URL}/pets?${params.toString()}`,
+          {
+            cache: "no-store",
+          }
+        );
+
+        const result = await res.json();
+        console.log(result);
+
+        if (result.data) {
+          setPets(result.data);
+        } else {
+          setPets([]);
         }
-      });
-
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_SERVER_URL}/pets?${params.toString()}`,
-        {
-          cache: "no-store",
-        }
-      );
-
-      const result = await res.json();
-      console.log(result);
-
-      if (result.data) {
-        setPets(result.data);
-        setLoading(false);
-      } else {
-        setPets([]);
+      } catch (err) {
+        console.log(err);
+        setError("Failed to fetch pets");
+      } finally {
         setLoading(false);
       }
-    } catch (err) {
-      console.log(err);
-      setError("Failed to fetch pets");
-      setLoading(false);
-    }
-  };
+    };
 
-  useEffect(() => {
     fetchPets();
   }, [searchCriteria]);
 

@@ -72,17 +72,23 @@ export default function UsersTable({ data }: UsersTableProps) {
 
   const { isOpen, onOpen, onClose, onOpenChange } = useDisclosure();
 
-  const handleUpdate = (data: UserData) => {
-    setAction("update");
-    onOpen();
-    setSelected(data);
-  };
+  const handleUpdate = React.useCallback(
+    (data: UserData) => {
+      setAction("update");
+      onOpen();
+      setSelected(data);
+    },
+    [onOpen]
+  );
 
-  const handleDelete = (id: string) => {
-    setAction("delete");
-    onOpen();
-    setSelected(id);
-  };
+  const handleDelete = React.useCallback(
+    (id: string) => {
+      setAction("delete");
+      onOpen();
+      setSelected(id);
+    },
+    [onOpen]
+  );
 
   const renderCell = React.useCallback(
     (data: UserData, columnKey: React.Key) => {
@@ -140,7 +146,7 @@ export default function UsersTable({ data }: UsersTableProps) {
           return cellValue;
       }
     },
-    []
+    [handleUpdate, handleDelete]
   );
 
   return (
@@ -171,7 +177,7 @@ export default function UsersTable({ data }: UsersTableProps) {
                     await deleteUser(selected), onClose();
                   }}
                 >
-                  <SubmitButton>delete</SubmitButton>
+                  <SubmitButton>Delete</SubmitButton>
                 </form>
               </div>
             </ModalHeader>

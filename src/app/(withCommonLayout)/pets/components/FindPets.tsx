@@ -43,47 +43,48 @@ const FindPets = () => {
   const [searchCriteria, setSearchCriteria] = useState<SearchCriteria>({});
   const [filterCriteria, setFilterCriteria] = useState<FilterCriteria>({});
   const [error, setError] = useState<string | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
-
-  const fetchPets = async () => {
-    try {
-      const params = new URLSearchParams();
-
-      Object.entries({ ...searchCriteria, ...filterCriteria }).forEach(
-        ([key, value]) => {
-          if (Array.isArray(value)) {
-            value.forEach((val) => params.append(key, val));
-          } else if (value) {
-            params.append(key, value);
-          }
-        }
-      );
-
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_SERVER_URL}/pets?${params.toString()}`,
-        {
-          cache: "no-store",
-        }
-      );
-
-      const result = await res.json();
-      // console.log(result);
-
-      if (result.data) {
-        setPets(result.data);
-        setLoading(false);
-      } else {
-        setPets([]);
-        setLoading(false);
-      }
-    } catch (err) {
-      console.log(err);
-      setError("Failed to fetch pets");
-      setLoading(false);
-    }
-  };
+  const [loading, setLoading] = useState<boolean>(false); // Start as false
 
   useEffect(() => {
+    const fetchPets = async () => {
+      setLoading(true); // Start loading before fetching
+      setError(null); // Reset error state
+
+      try {
+        const params = new URLSearchParams();
+
+        Object.entries({ ...searchCriteria, ...filterCriteria }).forEach(
+          ([key, value]) => {
+            if (Array.isArray(value)) {
+              value.forEach((val) => params.append(key, val));
+            } else if (value) {
+              params.append(key, value);
+            }
+          }
+        );
+
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_SERVER_URL}/pets?${params.toString()}`,
+          {
+            cache: "no-store",
+          }
+        );
+
+        const result = await res.json();
+
+        if (result.data) {
+          setPets(result.data);
+        } else {
+          setPets([]);
+        }
+      } catch (err) {
+        console.log(err);
+        setError("Failed to fetch pets");
+      } finally {
+        setLoading(false); // Stop loading after fetching
+      }
+    };
+
     fetchPets();
   }, [searchCriteria, filterCriteria]);
 
@@ -108,7 +109,7 @@ const FindPets = () => {
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 p-3">
                 {pets.length > 0 ? (
                   pets
-                    ?.slice(0, 9)
+                    .slice(0, 9)
                     .map((item) => <PetCard key={item.id} {...item} />)
                 ) : (
                   <div className="text-center">
@@ -119,7 +120,6 @@ const FindPets = () => {
                 )}
               </div>
             )}
-
             {error && <p className="text-red-600">{error}</p>}
           </div>
         </div>
