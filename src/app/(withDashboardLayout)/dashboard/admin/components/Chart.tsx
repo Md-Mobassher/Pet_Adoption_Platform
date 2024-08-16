@@ -14,17 +14,11 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
-
-const petData = [
-  { name: "Dogs", adopted: 400, available: 300 },
-  { name: "Cats", adopted: 300, available: 200 },
-  { name: "Rabbits", adopted: 200, available: 150 },
-  { name: "Birds", adopted: 100, available: 90 },
-];
+import { IItem } from "./PetStatistics";
 
 const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 
-const Chart = () => {
+const Chart = (data: IItem[]) => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {/* Line Chart */}
@@ -33,7 +27,7 @@ const Chart = () => {
           Adoptions Over Time
         </h2>
         <ResponsiveContainer width="100%" height={300}>
-          <LineChart data={petData}>
+          <LineChart data={data}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="name" />
             <YAxis />
@@ -51,7 +45,7 @@ const Chart = () => {
           Adopted vs Available Pets
         </h2>
         <ResponsiveContainer width="100%" height={300}>
-          <BarChart data={petData}>
+          <BarChart data={data}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="name" />
             <YAxis />
@@ -71,7 +65,7 @@ const Chart = () => {
         <ResponsiveContainer width="100%" height={300}>
           <PieChart>
             <Pie
-              data={petData}
+              data={data}
               dataKey="adopted"
               nameKey="name"
               cx="50%"
@@ -79,7 +73,7 @@ const Chart = () => {
               outerRadius={100}
               fill="#8884d8"
             >
-              {petData.map((entry, index) => (
+              {data.map((entry, index) => (
                 <Cell
                   key={`cell-${index}`}
                   fill={COLORS[index % COLORS.length]}

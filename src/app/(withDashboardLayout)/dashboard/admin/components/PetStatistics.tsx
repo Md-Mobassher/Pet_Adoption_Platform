@@ -1,9 +1,24 @@
 "use client";
 import { useState } from "react";
-import { Cell, Pie, ResponsiveContainer, Tooltip } from "recharts";
+import {
+  Bar,
+  BarChart,
+  CartesianGrid,
+  Cell,
+  Legend,
+  Line,
+  LineChart,
+  Pie,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from "recharts";
 import { PieChart } from "lucide-react";
 import StaticsCard from "@/app/(withDashboardLayout)/components/dashboard/StaticsCard";
 import LoadingPage from "@/app/loading";
+import PetAnalyticsChart from "./PetAnalyticsChart";
+import PetAnalyticsPieChart from "./PetAnalyticsPieChart";
 
 export interface IItem {
   name: string;
@@ -32,34 +47,20 @@ const PetStatistics = (pets: any) => {
   ];
   return (
     <>
-      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 lg:gap-5 md:gap-4 gap-3">
         {data.map((item, index) => (
           <StaticsCard key={index} name={item?.name} value={item.value} />
         ))}
       </div>
-      <div className="mt-8">
-        <h2 className="text-2xl font-bold mb-4">Pet Distribution</h2>
-        <ResponsiveContainer width="100%" height={300}>
-          <PieChart>
-            <Pie
-              data={data}
-              cx="50%"
-              cy="50%"
-              labelLine={false}
-              outerRadius={100}
-              fill="#8884d8"
-              dataKey="value"
-            >
-              {data?.map((entry, index) => (
-                <Cell
-                  key={`cell-${index}`}
-                  fill={COLORS[index % COLORS.length]}
-                />
-              ))}
-            </Pie>
-            <Tooltip />
-          </PieChart>
-        </ResponsiveContainer>
+      <div className="flex lg:flex-row md:flex-row flex-col gap-10 mt-16">
+        <div className="flex flex-col justify-center items-center w-full lg:w-[45%] md:w-[45%]">
+          <h1 className="text-xl font-bold mb-3">Pet Analytics</h1>
+          <PetAnalyticsChart data={data} />
+        </div>
+        <div className="flex flex-col justify-center items-center   w-full lg:w-[45%] md:w-[45%]">
+          <h1 className="text-xl font-bold mb-3">Pet Analytics</h1>
+          <PetAnalyticsPieChart data={data} />
+        </div>
       </div>
     </>
   );

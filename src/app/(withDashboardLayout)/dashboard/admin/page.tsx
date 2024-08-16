@@ -2,6 +2,7 @@ import { getCooke, logOut } from "@/app/(withCommonLayout)/actions/auth";
 import PetStatistics from "./components/PetStatistics";
 import UserStatistics from "./components/UserStatistics";
 import { getAnalytics } from "./pet-management/components/getAnalytics";
+import UserAnalyticsChart from "./components/UserAnalyticsChart ";
 
 const AdminDashboardPage = async () => {
   const accessToken = await getCooke("accessToken");
@@ -21,11 +22,7 @@ const AdminDashboardPage = async () => {
 
   return (
     <div className="p-8 bg-content1 min-h-screen">
-      <h1 className="text-3xl font-bold mb-8 text-center">
-        Pet Adoption Dashboard
-      </h1>
-
-      <div className="my-20">
+      <div className="mb-20">
         <h1 className="text-3xl font-bold mb-6">User Statistics</h1>
         <UserStatistics />
       </div>
