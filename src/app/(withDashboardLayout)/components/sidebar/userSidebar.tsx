@@ -5,6 +5,8 @@ import { SidebarItem } from "./sidebar-item";
 import { SidebarMenu } from "./sidebar-menu";
 import { useSidebarContext } from "../../Layout/layout-context";
 import { Sidebar } from "./sidebar.style";
+import Image from "next/image";
+import assets from "@/assets";
 
 export const SidebarWrapper = () => {
   const pathname = usePathname();
@@ -19,12 +21,8 @@ export const SidebarWrapper = () => {
         })}
       >
         <div className={Sidebar.Header()}>
-          {" "}
-          <Link className="flex" href="/">
-            <Cat className="size-8 mr-2 text-primary" />
-            <h1 className="font-bold text-xl text-inherit">
-              <span className="text-primary">Pet</span> Adoption
-            </h1>
+          <Link className="flex justify-start items-center" href="/">
+            <Image src={assets.logo} alt="logo" className="" width={160} />
           </Link>
         </div>
 

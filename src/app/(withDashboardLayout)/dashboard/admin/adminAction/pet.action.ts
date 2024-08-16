@@ -81,3 +81,26 @@ export async function deletePet(PetId: string) {
     throw error;
   }
 }
+
+export async function petAnalytic() {
+  try {
+    const accessToken = cookies().get("accessToken")?.value;
+
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/pets/analytics`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `${accessToken}`,
+        },
+        cache: "no-store",
+      }
+    );
+    revalidateTag("pets");
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    throw error;
+  }
+}

@@ -16,11 +16,10 @@ const PetMangementPage = async () => {
   });
 
   const { data } = await res.json();
-  // console.log(data);
 
   return (
-    <div>
-      <div className="mt-5 mb-7">
+    <div className="lg:p-7 md:p-6 p-4">
+      <div className=" mb-7">
         <h3 className="font-bold text-inherit px-4 text-3xl text-center">
           <span className="text-primary">Pet</span> Management
         </h3>

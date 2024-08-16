@@ -56,7 +56,7 @@ export const NavbarWrapper = ({ children }: Props) => {
           <UserDropdown />
         </NavbarContent>
       </Navbar>
-      <div className="p-3">{children}</div>
+      <div className="">{children}</div>
     </div>
   );
 };

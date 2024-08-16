@@ -15,6 +15,8 @@ import { SidebarItem } from "./sidebar-item";
 import { SidebarMenu } from "./sidebar-menu";
 import { useSidebarContext } from "../../Layout/layout-context";
 import { Sidebar } from "./sidebar.style";
+import Image from "next/image";
+import assets from "@/assets";
 
 export const AdminSidebarWrapper = () => {
   const pathname = usePathname();
@@ -29,12 +31,8 @@ export const AdminSidebarWrapper = () => {
         })}
       >
         <div className={Sidebar.Header()}>
-          {" "}
-          <Link className="flex" href="/">
-            <Cat className="size-8 mr-2 text-primary" />
-            <h1 className="font-bold text-xl text-inherit">
-              <span className="text-primary">Pet</span> Adoption
-            </h1>
+          <Link className="flex justify-start items-center" href="/">
+            <Image src={assets.logo} alt="logo" className="" width={160} />
           </Link>
         </div>
 
@@ -44,7 +42,7 @@ export const AdminSidebarWrapper = () => {
               title="Home"
               icon={<Home />}
               isActive={pathname === "/dashboard"}
-              href="/dashboard"
+              href="/dashboard/admin"
             />
             <SidebarMenu title="Main Menu">
               <SidebarItem

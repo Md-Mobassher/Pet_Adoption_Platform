@@ -1,6 +1,7 @@
 import { getCooke, logOut } from "@/app/(withCommonLayout)/actions/auth";
 import { Card, CardBody, CardFooter } from "@nextui-org/card";
 import EditProfileButton from "./EditProfileButton";
+import Image from "next/image";
 
 const AdminProfilePage = async () => {
   const accessToken = await getCooke("accessToken");
@@ -21,13 +22,13 @@ const AdminProfilePage = async () => {
   const myInfo = await res.json();
 
   return (
-    <div className="my-3">
+    <div className="lg:p-7 md:p-6 p-4">
       <h3 className="font-bold text-inherit px-4 text-3xl text-center">
         My <span className="text-primary">Profile</span>
       </h3>
 
       <div className="lg:my-10 my-5 max-w-4xl mx-auto">
-        <Card className=" border shadow-xl px-10 py-10 hover:shadow-2xl hover:border-primary max-w-4xl mx-auto">
+        <Card className=" border border-gray-300 lg:px-10 lg:py-10 hover:shadow-2xl hover:border-primary max-w-4xl mx-auto">
           {/* <div className="h-80 w-full flex border-b">
             <Image src={""} alt="pet image" width={600} height={350} />
           </div> */}
