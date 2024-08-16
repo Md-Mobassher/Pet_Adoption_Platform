@@ -81,6 +81,15 @@ export default function NavigationBar({ user }: any) {
             </Link>
           </NavbarItem>
           <NavbarItem>
+            <Link
+              href="/contact"
+              color="foreground"
+              className="hover:text-primary font-semibold p-2"
+            >
+              Contact
+            </Link>
+          </NavbarItem>
+          <NavbarItem>
             {user && (
               <Link
                 href={routeMap[user?.role]}

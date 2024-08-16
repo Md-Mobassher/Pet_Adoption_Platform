@@ -4,7 +4,7 @@ interface ITitle {
 
 const SubTitle = ({ title }: ITitle) => {
   return (
-    <div className="max-w-3xl mx-auto lg:py-3 md:py-3 py-2">
+    <div className="max-w-3xl mx-auto lg:pb-3 md:pb-3 pb-2">
       <p className="text-lg font-semibold text-gray-600 text-center">{title}</p>
     </div>
   );

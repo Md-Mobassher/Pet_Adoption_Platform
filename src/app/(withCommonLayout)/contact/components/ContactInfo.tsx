@@ -1,21 +1,13 @@
 import assets from "@/assets";
 import PetContainer from "@/components/ui/PetContainer";
-import SubTitle from "@/components/ui/SubTitle";
-import Title from "@/components/ui/Title";
 import Image from "next/image";
 import Link from "next/link";
 
 const ContactInfo = () => {
   return (
-    <div className="py-10">
+    <div className="">
       <PetContainer>
-        <Title title="Contact Information" />
-        <SubTitle
-          title="We would love to hear from you! Reach out to us through any of the
-          following channels"
-        />
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:gap-10 md:gap-8 gap-6 lg:mt-10 md:mt-8 mt-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:gap-10 md:gap-8 gap-6 ">
           <div className="w-[95%] mx-auto lg:w-full md:w-full flex justify-evenly items-center gap-5 lg:p-8 md:p-8 p-6 rounded-lg shadow-xl border border-slate-200">
             <div className="flex flex-col gap-4 justify-center items-center">
               <Image
@@ -65,17 +57,20 @@ const ContactInfo = () => {
       </PetContainer>
 
       {/* social media */}
-      <div className="flex gap-10 justify-center">
-        <h1 className="text-2xl font-bold text-center mb-6">
-          <span className="text-primary">Follow us </span> on social media
-        </h1>
-        <div className="flex gap-4">
+      <div className="flex gap-10 justify-center items-center py-10">
+        <div className="">
+          <h1 className="text-2xl font-bold text-center mb-6">
+            <span className="text-primary">Follow us </span> on social media
+          </h1>
+        </div>
+        <div className="flex lg:gap-4 gap-3">
           <Link href="https://www.facebook.com/mdmobassherf" target="_blank">
             <Image
               src={assets.icons.facebook}
               alt={"facebook"}
               width={50}
               height={50}
+              className="hover:scale-110 transition-all duration-300"
             />
           </Link>
           <Link href="https://www.linkedin.com/in/md-mobassher" target="_blank">
@@ -84,6 +79,7 @@ const ContactInfo = () => {
               alt={"facebook"}
               width={50}
               height={50}
+              className="hover:scale-110 transition-all duration-300"
             />
           </Link>
           <Link href="https://github.com/Md-Mobassher" target="_blank">
@@ -92,6 +88,7 @@ const ContactInfo = () => {
               alt={"facebook"}
               width={50}
               height={50}
+              className="hover:scale-110 transition-all duration-300"
             />
           </Link>
           <Link href="https://twitter.com/md_mobasshert" target="_blank">
@@ -100,6 +97,7 @@ const ContactInfo = () => {
               alt={"facebook"}
               width={50}
               height={50}
+              className="hover:scale-110 transition-all duration-300"
             />
           </Link>
         </div>

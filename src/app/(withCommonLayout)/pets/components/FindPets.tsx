@@ -96,7 +96,7 @@ const FindPets = () => {
   };
 
   return (
-    <div className="">
+    <div className="-mt-5">
       <PetContainer>
         <SearchPets onSearch={handleSearch} />
         <div className="flex flex-col lg:flex-row lg:justify-between">

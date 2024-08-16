@@ -66,16 +66,28 @@ const Footer = () => {
             </h1>
             <div className="justify-start items-center lg:mt-3 md:mt-3">
               <div className="flex flex-col gap-1 ">
-                <Link href="/about" className="hover:text-primary">
+                <Link
+                  href="/about"
+                  className="hover:text-primary hover:pl-2 transition-all duration-300"
+                >
                   About Us
                 </Link>
-                <Link href="/pets" className="hover:text-primary">
+                <Link
+                  href="/pets"
+                  className="hover:text-primary hover:pl-2 transition-all duration-300"
+                >
                   Pets
                 </Link>
-                <Link href="/contact" className="hover:text-primary">
+                <Link
+                  href="/contact"
+                  className="hover:text-primary hover:pl-2 transition-all duration-300"
+                >
                   Contact
                 </Link>
-                <Link href="/login" className="hover:text-primary">
+                <Link
+                  href="/login"
+                  className="hover:text-primary hover:pl-2 transition-all duration-300"
+                >
                   Login
                 </Link>
               </div>
@@ -87,30 +99,48 @@ const Footer = () => {
             <h1 className="text-2xl font-bold text-center">
               <span className="text-primary">Social</span> Media
             </h1>
-            <div className="flex gap-4 justify-center items-center mt-3">
+            <div className="flex lg:gap-4 gap-3">
               <Link
                 href="https://www.facebook.com/mdmobassherf"
                 target="_blank"
               >
-                <Facebook className="border text-primary border-primary hover:bg-primary hover:text-white lg:size-9 md:size-8 size-7 rounded" />
+                <Image
+                  src={assets.icons.facebook}
+                  alt={"facebook"}
+                  width={50}
+                  height={50}
+                  className="hover:scale-110 transition-all duration-300"
+                />
               </Link>
               <Link
-                href="https://www.facebook.com/mdmobassherf"
+                href="https://www.linkedin.com/in/md-mobassher"
                 target="_blank"
               >
-                <Linkedin className="border text-primary border-primary hover:bg-primary hover:text-white lg:size-9 md:size-8 size-7 rounded" />
+                <Image
+                  src={assets.icons.linkedIn}
+                  alt={"facebook"}
+                  width={50}
+                  height={50}
+                  className="hover:scale-110 transition-all duration-300"
+                />
               </Link>
-              <Link
-                href="https://www.facebook.com/mdmobassherf"
-                target="_blank"
-              >
-                <Github className="border text-primary border-primary hover:bg-primary hover:text-white lg:size-9 md:size-8 size-7 rounded" />
+              <Link href="https://github.com/Md-Mobassher" target="_blank">
+                <Image
+                  src={assets.icons.github}
+                  alt={"facebook"}
+                  width={50}
+                  height={50}
+                  className="hover:scale-110 transition-all duration-300"
+                />
               </Link>
-              <Link
-                href="https://www.facebook.com/mdmobassherf"
-                target="_blank"
-              >
-                <Twitter className="border text-primary border-primary hover:bg-primary hover:text-white lg:size-9 md:size-8 size-7 rounded" />
+              <Link href="https://twitter.com/md_mobasshert" target="_blank">
+                <Image
+                  src={assets.icons.twitter}
+                  alt={"facebook"}
+                  width={50}
+                  height={50}
+                  className="hover:scale-110 transition-all duration-300"
+                />
               </Link>
             </div>
           </div>

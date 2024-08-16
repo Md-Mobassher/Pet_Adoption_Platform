@@ -93,6 +93,7 @@ const RegisterForm = () => {
           fullWidth
           value={formData.name}
           onChange={handleChange}
+          className="max-w-sm"
         />
         {errors.name && (
           <p className="text-red-600 text-sm my-2 pl-3">
@@ -175,7 +176,7 @@ const RegisterForm = () => {
         )}
 
         <div className="flex justify-end text-md my-3">
-          Already have an account?{" "}
+          <p className="text-gray-500"> Already have an account?</p>{" "}
           <Link className="text-primary ml-2" href="/login">
             Please Login
           </Link>
