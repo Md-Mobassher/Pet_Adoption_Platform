@@ -2,7 +2,6 @@ import { getCooke, logOut } from "@/app/(withCommonLayout)/actions/auth";
 import PetStatistics from "./components/PetStatistics";
 import UserStatistics from "./components/UserStatistics";
 import { getAnalytics } from "./pet-management/components/getAnalytics";
-import UserAnalyticsChart from "./components/UserAnalyticsChart ";
 
 const AdminDashboardPage = async () => {
   const accessToken = await getCooke("accessToken");

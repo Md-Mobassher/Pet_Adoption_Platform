@@ -89,36 +89,37 @@ export default function NavigationBar({ user }: any) {
               Contact
             </Link>
           </NavbarItem>
-          <NavbarItem>
-            {user && (
+          {user && (
+            <NavbarItem>
               <Link
                 href={routeMap[user?.role]}
                 className="hover:text-primary font-semibold p-2"
               >
                 Dashboard
               </Link>
-            )}
-          </NavbarItem>
-          <NavbarItem>
-            {user && user.role === "ADMIN" && (
+            </NavbarItem>
+          )}
+          {user && user.role === "ADMIN" && (
+            <NavbarItem>
               <Link
                 href="/dashboard/admin/my-profile"
                 className="hover:text-primary font-semibold p-2"
               >
                 My Profile
               </Link>
-            )}
-          </NavbarItem>
-          <NavbarItem>
-            {user && user.role === "USER" && (
+            </NavbarItem>
+          )}
+
+          {user && user.role === "USER" && (
+            <NavbarItem>
               <Link
                 href="/dashboard/my-profile"
                 className="hover:text-primary font-semibold p-2"
               >
                 My Profile
               </Link>
-            )}
-          </NavbarItem>
+            </NavbarItem>
+          )}
         </NavbarContent>
 
         <NavbarContent className="hidden lg:flex  gap-4" justify="end">
