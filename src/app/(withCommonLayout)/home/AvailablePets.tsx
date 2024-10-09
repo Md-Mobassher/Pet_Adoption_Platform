@@ -33,7 +33,7 @@ const AvailablePets = () => {
         );
 
         const result = await res.json();
-        console.log(result);
+        // console.log(result);
 
         if (result.data) {
           setPets(result.data);

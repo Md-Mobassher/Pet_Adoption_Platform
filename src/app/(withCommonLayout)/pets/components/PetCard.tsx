@@ -6,15 +6,15 @@ import { Button } from "@nextui-org/button";
 
 const PetCard = ({ id, image, name, species, age, breed, location }: any) => {
   return (
-    <Card className="relative group min-w-sm w-full h-96 overflow-hidden rounded-lg border hover:shadow-2xl hover:border-primary">
+    <Card className="relative group min-w-sm w-full h-80 overflow-hidden rounded-lg border border-gray-300 hover:border-primary">
       {/* Pet Image */}
-      <div className="h-full w-full">
+      <div className="h-full w-full ">
         <Image
           src={image}
           alt="pet image"
-          layout="fill"
-          objectFit="cover"
-          className="transition-transform duration-300 ease-in-out transform group-hover:scale-110"
+          className="transition-transform duration-300 ease-in-out transform group-hover:scale-110 object-fill bg-slate-50"
+          width={600}
+          height={500}
         />
       </div>
 

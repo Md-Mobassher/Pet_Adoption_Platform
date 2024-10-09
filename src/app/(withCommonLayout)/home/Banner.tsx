@@ -58,21 +58,23 @@ export default function Banner() {
                 objectFit="cover"
                 className="z-0"
               />
-              <div className="absolute inset-0 flex flex-col justify-center lg:items-start md:items-start items-center text-center bg-black bg-opacity-50 z-10 lg:px-20 md:px-10 px-4 ">
-                <div className="max-w-xl">
-                  <h1 className="lg:text-5xl text-4xl font-bold text-white mb-4 lg:text-start md:text-start text-center">
-                    {banner.title}
-                  </h1>
-                  <p className="text-lg text-white my-5  lg:text-start md:text-start text-center">
-                    {banner.description}
-                  </p>
-                  <div className="lg:mt-16 md:mt-14 mt-12 lg:text-start md:text-start text-center">
-                    <Link
-                      href={banner.ctaLink}
-                      className="px-6 py-4 bg-primary text-white font-semibold rounded-lg hover:bg-primary-dark transition inline"
-                    >
-                      {banner.ctaText}
-                    </Link>
+              <div className="absolute inset-0 flex justify-start items-center text-center bg-black bg-opacity-60 z-10  ">
+                <div className=" container mx-auto lg:px-8 md:px-6  px-4">
+                  <div className="max-w-xl">
+                    <h1 className="lg:text-5xl text-4xl font-bold text-white mb-4 lg:text-start md:text-start text-center">
+                      {banner.title}
+                    </h1>
+                    <p className="text-lg text-white my-5  lg:text-start md:text-start text-center">
+                      {banner.description}
+                    </p>
+                    <div className="lg:mt-16 md:mt-14 mt-12 lg:text-start md:text-start text-center">
+                      <Link
+                        href={banner.ctaLink}
+                        className="px-6 py-4 bg-primary text-white font-semibold rounded-lg hover:bg-primary-dark transition inline"
+                      >
+                        {banner.ctaText}
+                      </Link>
+                    </div>
                   </div>
                 </div>
               </div>
