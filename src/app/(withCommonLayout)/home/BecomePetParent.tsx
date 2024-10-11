@@ -29,7 +29,7 @@ const BecomePetParent = () => {
                 need to know to become the best pet parent for your furbaby.
               </h4>
               <div className="flex lg:justify-start md:justify-start justify-center">
-                <PetButton title="Read More" />
+                <PetButton title="Contact Us" link={"/contact"} />
               </div>
             </div>
           </div>

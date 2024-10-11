@@ -33,7 +33,7 @@ const ContactInfo = () => {
               <h5 className="font-bold text-xl text-primary text-center">
                 Call / WhatsApp
               </h5>
-              <p className="font-semibold ">+8801706060647</p>
+              <p className="font-semibold ">+8801773381807</p>
             </div>
           </div>
           <div className="w-[95%] mx-auto lg:w-full md:w-full flex justify-evenly items-center gap-5 lg:p-8 md:p-8 p-6 rounded-lg shadow-xl border border-slate-200">
@@ -57,9 +57,9 @@ const ContactInfo = () => {
       </PetContainer>
 
       {/* social media */}
-      <div className="flex gap-10 justify-center items-center py-10">
+      <div className="flex lg:flex-row md:flex-row flex-col gap-10 justify-center items-center py-10">
         <div className="">
-          <h1 className="text-2xl font-bold text-center mb-6">
+          <h1 className="text-2xl font-bold text-center">
             <span className="text-primary">Follow us </span> on social media
           </h1>
         </div>
@@ -68,8 +68,8 @@ const ContactInfo = () => {
             <Image
               src={assets.icons.facebook}
               alt={"facebook"}
-              width={50}
-              height={50}
+              width={40}
+              height={40}
               className="hover:scale-110 transition-all duration-300"
             />
           </Link>
@@ -77,8 +77,8 @@ const ContactInfo = () => {
             <Image
               src={assets.icons.linkedIn}
               alt={"facebook"}
-              width={50}
-              height={50}
+              width={40}
+              height={40}
               className="hover:scale-110 transition-all duration-300"
             />
           </Link>
@@ -86,8 +86,8 @@ const ContactInfo = () => {
             <Image
               src={assets.icons.github}
               alt={"facebook"}
-              width={50}
-              height={50}
+              width={40}
+              height={40}
               className="hover:scale-110 transition-all duration-300"
             />
           </Link>
@@ -95,8 +95,8 @@ const ContactInfo = () => {
             <Image
               src={assets.icons.twitter}
               alt={"facebook"}
-              width={50}
-              height={50}
+              width={40}
+              height={40}
               className="hover:scale-110 transition-all duration-300"
             />
           </Link>

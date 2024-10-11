@@ -30,7 +30,7 @@ const AdoptSection = () => {
                 your area.
               </h4>
               <div className="flex lg:justify-start md:justify-start justify-center">
-                <PetButton title="Contact Us" />
+                <PetButton title="Contact Us" link={"/contact"} />
               </div>
             </div>
           </div>

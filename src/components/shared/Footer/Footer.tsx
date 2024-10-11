@@ -23,9 +23,14 @@ const Footer = () => {
               className="flex lg:justify-start md:justify-start justify-center items-center"
               href="/"
             >
-              <Image src={assets.logo} alt="logo" className="" width={200} />
+              <Image
+                src={assets.logo}
+                alt="logo"
+                className="-ml-2"
+                width={200}
+              />
             </Link>
-            <p className="mt-3 ">
+            <p className="mt-3">
               Discover your perfect furry companion with our comprehensive pet
               adoption platform, connecting loving homes with adorable pets in
               need. Find your new best friend today!
@@ -33,11 +38,11 @@ const Footer = () => {
           </div>
 
           {/* contact */}
-          <div className="flex flex-1 flex-col gap-5 justify-start items-center pb-5 ml-5">
+          <div className="flex flex-1 flex-col gap-5 justify-start items-center pb-5 ml-5 lg:mt-3 md:mt-3">
             <h1 className="text-2xl font-bold text-center">
               <span className="text-primary">Contact </span> Info
             </h1>
-            <div className="lg:mt-3 md:mt-3">
+            <div className="">
               <h1 className=" flex gap-5 mb-3">
                 <span>
                   <MailOpen className="size-6 " />
@@ -60,11 +65,11 @@ const Footer = () => {
           </div>
 
           {/* link */}
-          <div className="flex flex-1 flex-col gap-5 justify-center items-center pb-5 min-w-32">
+          <div className="flex flex-1 flex-col gap-5 justify-center items-center pb-5 min-w-32 lg:mt-3 md:mt-3">
             <h1 className="text-2xl font-bold text-center">
               <span className="text-primary">Link</span>
             </h1>
-            <div className="justify-start items-center lg:mt-3 md:mt-3">
+            <div className="justify-start items-center ">
               <div className="flex flex-col gap-1 ">
                 <Link
                   href="/about"
@@ -95,11 +100,11 @@ const Footer = () => {
           </div>
 
           {/* social media */}
-          <div className="flex flex-1 flex-col gap-5 justify-center items-center pb-5">
+          <div className="flex flex-1 flex-col gap-5 justify-center items-center pb-5 lg:mt-3 md:mt-3">
             <h1 className="text-2xl font-bold text-center">
               <span className="text-primary">Social</span> Media
             </h1>
-            <div className="flex lg:gap-4 gap-3">
+            <div className="flex lg:gap-4 gap-3 ">
               <Link
                 href="https://www.facebook.com/mdmobassherf"
                 target="_blank"
@@ -107,8 +112,8 @@ const Footer = () => {
                 <Image
                   src={assets.icons.facebook}
                   alt={"facebook"}
-                  width={50}
-                  height={50}
+                  width={40}
+                  height={40}
                   className="hover:scale-110 transition-all duration-300"
                 />
               </Link>
@@ -119,8 +124,8 @@ const Footer = () => {
                 <Image
                   src={assets.icons.linkedIn}
                   alt={"facebook"}
-                  width={50}
-                  height={50}
+                  width={40}
+                  height={40}
                   className="hover:scale-110 transition-all duration-300"
                 />
               </Link>
@@ -128,8 +133,8 @@ const Footer = () => {
                 <Image
                   src={assets.icons.github}
                   alt={"facebook"}
-                  width={50}
-                  height={50}
+                  width={40}
+                  height={40}
                   className="hover:scale-110 transition-all duration-300"
                 />
               </Link>
@@ -137,8 +142,8 @@ const Footer = () => {
                 <Image
                   src={assets.icons.twitter}
                   alt={"facebook"}
-                  width={50}
-                  height={50}
+                  width={40}
+                  height={40}
                   className="hover:scale-110 transition-all duration-300"
                 />
               </Link>
