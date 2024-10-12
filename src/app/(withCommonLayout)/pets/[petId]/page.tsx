@@ -12,7 +12,7 @@ const PetDetailsPage = async ({ params }: TProps) => {
       <h1 className="text-4xl font-bold text-center mb-6 mt-8">
         Pet <span className="text-primary">Details</span>
       </h1>
-      <PetDetails accessToken={accessToken} petId={params.petId} />
+      <PetDetails petId={params.petId} />
     </div>
   );
 };

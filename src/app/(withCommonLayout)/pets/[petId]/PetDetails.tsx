@@ -11,13 +11,7 @@ import Link from "next/link";
 import { Button } from "@nextui-org/button";
 import { IPetData } from "@/app/(withDashboardLayout)/dashboard/admin/pet-management/components/PetsTable";
 
-const PetDetails = ({
-  accessToken,
-  petId,
-}: {
-  accessToken: string | undefined;
-  petId: string;
-}) => {
+const PetDetails = ({ petId }: { petId: string }) => {
   const router = useRouter();
   const [petData, setPetData] = useState<IPetData>({
     id: "",
@@ -37,11 +31,6 @@ const PetDetails = ({
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!accessToken) {
-      router.push("/login"); // Redirect to login page if not logged in
-      return;
-    }
-
     async function fetchData() {
       try {
         const res = await fetch(
@@ -49,12 +38,12 @@ const PetDetails = ({
           {
             headers: {
               "Content-Type": "application/json",
-              Authorization: `${accessToken}`,
             },
             cache: "no-store",
           }
         );
         const data = await res.json();
+        // console.log(data);
         setPetData(data?.data);
       } catch (error) {
         console.error("Error fetching pet data:", error);
@@ -64,7 +53,7 @@ const PetDetails = ({
     }
 
     fetchData();
-  }, [petId, accessToken, router]);
+  }, [petId, router]);
 
   if (loading) {
     return <LoadingPage />;
@@ -73,7 +62,7 @@ const PetDetails = ({
   return (
     <Card className="px-2 py-5 lg:p-8 md:p-6 mx-4">
       <CardBody>
-        {petData.image && (
+        {petData?.image && (
           <div className="lg:w-[500px] lg:h-[500px] md:w-[400px] md:h-[400px] mx-auto flex">
             <Image
               src={petData?.image}

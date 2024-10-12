@@ -6,7 +6,7 @@ import { Input } from "@nextui-org/input";
 import SubmitButton from "@/components/ui/SubmitButton";
 import { loginUser } from "../actions/auth";
 import { toast } from "sonner";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { EyeIcon, EyeOff, Copy } from "lucide-react";
 import { z } from "zod";
 import { Button } from "@nextui-org/button";
@@ -25,6 +25,7 @@ const loginSchema = z.object({
 });
 
 export default function LoginForm() {
+  const searchParams = useSearchParams();
   const router = useRouter();
   const formRef = createRef<HTMLFormElement>();
   const [formData, setFormData] = useState({
@@ -61,7 +62,10 @@ export default function LoginForm() {
           duration: 3000,
         });
         formRef.current!.reset();
-        router.push("/");
+
+        // Redirect user to the originally requested page or homepage
+        const redirectTo = searchParams.get("redirectTo") || "/";
+        router.push(redirectTo);
       } else {
         toast.error(result.message, { id: 1, duration: 3000 });
       }

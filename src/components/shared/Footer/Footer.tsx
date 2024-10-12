@@ -152,7 +152,7 @@ const Footer = () => {
         </div>
 
         {/* border -bottom */}
-        <div className="container mx-auto pt-5 flex flex-wrap lg:justify-between justify-center items-center border-t-1">
+        <div className="container mx-auto pt-5 flex flex-wrap lg:justify-between justify-center items-center border-t-1 px-4">
           <p className="text-center">
             Copyright &copy; {new Date().getFullYear()} All Right regerved to{" "}
             <span className="text-primary">Pet Adoption Platform</span>
