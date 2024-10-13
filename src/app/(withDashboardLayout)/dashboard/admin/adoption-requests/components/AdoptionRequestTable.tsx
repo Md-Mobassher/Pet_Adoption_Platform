@@ -1,13 +1,12 @@
 "use client";
 
-import { Edit, Trash } from "lucide-react";
+import { Edit } from "lucide-react";
 import React, { useState } from "react";
 import CustomModal from "../../../../components/modal/CustomModal";
 import { ModalHeader, useDisclosure } from "@nextui-org/modal";
 import { User } from "@nextui-org/user";
 import { Chip } from "@nextui-org/chip";
 import { Tooltip } from "@nextui-org/tooltip";
-import { Button } from "@nextui-org/button";
 import {
   Table,
   TableBody,
@@ -16,12 +15,11 @@ import {
   TableHeader,
   TableRow,
 } from "@nextui-org/table";
-import UpdateUserForm from "./UpdateUserForm";
-import SubmitButton from "@/components/ui/SubmitButton";
-import { deleteUser } from "../../adminAction/user.action";
+import { IPetData } from "../../pet-management/components/PetsTable";
+import UpdateAdoptionStatus from "./UpdateAdoptionStatus";
+import { IUserData } from "../../user-management/components/UsersTable";
 
-type StatusKey = "ACTIVE" | "DEACTIVE" | "DELETED";
-type RoleKey = "ADMIN" | "USER";
+type StatusKey = "PENDING" | "APPROVED" | "REJECTED";
 type ChipColor =
   | "success"
   | "danger"
@@ -32,48 +30,47 @@ type ChipColor =
   | undefined;
 
 type TStatusColor = Record<StatusKey, ChipColor>;
-type TRoleColor = Record<RoleKey, ChipColor>;
 
 const statusColorMap: TStatusColor = {
-  ACTIVE: "success",
-  DEACTIVE: "danger",
-  DELETED: "warning",
-};
-
-const roleColorMap: TRoleColor = {
-  ADMIN: "primary",
-  USER: "success",
+  PENDING: "success",
+  APPROVED: "danger",
+  REJECTED: "warning",
 };
 
 const columns = [
-  { name: "NAME", uid: "name" },
-  { name: "Role", uid: "role" },
+  { name: "Pet Name", uid: "petname" },
+  { name: "User Name", uid: "username" },
   { name: "Status", uid: "status" },
   { name: "ACTIONS", uid: "actions" },
 ];
 
-export interface IUserData {
+export interface IAdoptionRequest {
   id: string;
-  name: string;
-  email: string;
-  role: RoleKey;
+  userId: string;
+  petId: string;
   status: StatusKey;
-  image?: string;
+  petOwnershipExperience: string;
+  createdAt: string;
+  updatedAt: string;
+  pet: IPetData;
+  user: IUserData;
 }
 
-interface UsersTableProps {
-  data: { data: IUserData[] };
+interface AdoptionRequestTableProps {
+  data: { data: IAdoptionRequest[] | [] };
 }
 
-export default function UsersTable({ data }: UsersTableProps) {
-  const users = data?.data;
+export default function AdoptionRequestTable({
+  data,
+}: AdoptionRequestTableProps) {
+  const adoptionRequest = data?.data;
   const [selected, setSelected] = useState<any>(null);
   const [action, setAction] = useState("");
 
   const { isOpen, onOpen, onClose, onOpenChange } = useDisclosure();
 
   const handleUpdate = React.useCallback(
-    (data: IUserData) => {
+    (data: IAdoptionRequest) => {
       setAction("update");
       onOpen();
       setSelected(data);
@@ -91,55 +88,51 @@ export default function UsersTable({ data }: UsersTableProps) {
   );
 
   const renderCell = React.useCallback(
-    (data: IUserData, columnKey: React.Key) => {
-      const cellValue = data[columnKey as keyof IUserData];
+    (data: IAdoptionRequest, columnKey: React.Key) => {
+      const cellValue = data[columnKey as keyof IAdoptionRequest];
 
       switch (columnKey) {
-        case "name":
+        case "petname":
           return (
             <User
-              avatarProps={{ radius: "lg", src: data.image }}
-              description={data.email}
-              name={data.name}
+              avatarProps={{ radius: "lg", src: data?.pet?.image }}
+              name={data?.pet?.name}
+              description={data?.pet?.species}
             >
-              {data.name}
+              {data?.pet?.name}
             </User>
           );
-        case "role":
+        case "username":
           return (
-            <Chip
-              className="capitalize"
-              color={roleColorMap[data.role]}
-              size="sm"
-              variant="flat"
-            >
-              {cellValue}
+            <Chip className="capitalize" size="sm">
+              {data?.user?.name}
             </Chip>
           );
+
         case "status":
           return (
             <Chip
               className="capitalize"
-              color={statusColorMap[data.status]}
+              color={statusColorMap[data?.status]}
               size="sm"
               variant="flat"
             >
-              {cellValue}
+              {data?.status}
             </Chip>
           );
         case "actions":
           return (
             <div className="relative flex items-center gap-2">
-              <Tooltip content="Edit user">
+              <Tooltip content="Change Status">
                 <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
                   <Edit onClick={() => handleUpdate(data)} />
                 </span>
               </Tooltip>
-              <Tooltip color="danger" content="Delete user">
+              {/* <Tooltip color="danger" content="Delete user">
                 <span className="text-lg text-danger cursor-pointer active:opacity-50">
                   <Trash onClick={() => handleDelete(data.id)} />
                 </span>
-              </Tooltip>
+              </Tooltip> */}
             </div>
           );
         default:
@@ -159,12 +152,15 @@ export default function UsersTable({ data }: UsersTableProps) {
         {action === "update" && (
           <div>
             <ModalHeader className="flex flex-col gap-1">
-              Update User
+              Update Status
             </ModalHeader>
-            <UpdateUserForm onClose={onClose} data={selected}></UpdateUserForm>
+            <UpdateAdoptionStatus
+              onClose={onClose}
+              data={selected}
+            ></UpdateAdoptionStatus>
           </div>
         )}
-        {action === "delete" && (
+        {/* {action === "delete" && (
           <div>
             <ModalHeader className="flex flex-col gap-1">
               Delete User
@@ -182,7 +178,7 @@ export default function UsersTable({ data }: UsersTableProps) {
               </div>
             </ModalHeader>
           </div>
-        )}
+        )} */}
       </CustomModal>
 
       {/* TABLE  */}
@@ -197,7 +193,7 @@ export default function UsersTable({ data }: UsersTableProps) {
             </TableColumn>
           )}
         </TableHeader>
-        <TableBody items={users}>
+        <TableBody items={adoptionRequest}>
           {(item: IUserData) => (
             <TableRow key={item.id}>
               {(columnKey) => (

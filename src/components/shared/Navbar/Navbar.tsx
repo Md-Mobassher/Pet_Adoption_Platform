@@ -12,7 +12,6 @@ import {
 import Link from "next/link";
 import { useState } from "react";
 import { ThemeSwitcher } from "../ThemeSwitcher";
-import { Cat } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/lib/Providers/AuthProvider";
 import { logOut } from "@/app/(withCommonLayout)/actions/auth";

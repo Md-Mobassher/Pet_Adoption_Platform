@@ -1,14 +1,4 @@
-import {
-  Cat,
-  CatIcon,
-  GroupIcon,
-  Home,
-  KeyIcon,
-  ParenthesesIcon,
-  User,
-  User2Icon,
-  Users,
-} from "lucide-react";
+import { CatIcon, Home, KeyIcon, User2Icon, Users } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { SidebarItem } from "./sidebar-item";
@@ -46,12 +36,6 @@ export const AdminSidebarWrapper = () => {
             />
             <SidebarMenu title="Main Menu">
               <SidebarItem
-                isActive={pathname === "/dashboard/admin/my-profile"}
-                title="My Profile"
-                icon={<User2Icon />}
-                href="/dashboard/admin/my-profile"
-              />
-              <SidebarItem
                 isActive={pathname === "/dashboard/admin/user-management"}
                 title="User Management"
                 icon={<Users />}
@@ -63,7 +47,18 @@ export const AdminSidebarWrapper = () => {
                 icon={<CatIcon />}
                 href="/dashboard/admin/pet-management"
               />
-
+              <SidebarItem
+                isActive={pathname === "/dashboard/admin/adoption-requests"}
+                title="Adoption Requests"
+                icon={<CatIcon />}
+                href="/dashboard/admin/adoption-requests"
+              />
+              <SidebarItem
+                isActive={pathname === "/dashboard/admin/my-profile"}
+                title="My Profile"
+                icon={<User2Icon />}
+                href="/dashboard/admin/my-profile"
+              />
               <SidebarItem
                 isActive={pathname === "/dashboard/admin/change-password"}
                 title="Change Password"

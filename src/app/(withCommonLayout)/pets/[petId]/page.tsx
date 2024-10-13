@@ -1,4 +1,4 @@
-import { getCooke } from "../../actions/auth";
+import { userInfo } from "../../actions/auth";
 import PetDetails from "./PetDetails";
 
 type TProps = {
@@ -6,7 +6,8 @@ type TProps = {
 };
 
 const PetDetailsPage = async ({ params }: TProps) => {
-  const accessToken = await getCooke("accessToken");
+  const user = await userInfo();
+
   return (
     <div className="container mx-auto">
       <h1 className="text-4xl font-bold text-center mb-6 mt-8">

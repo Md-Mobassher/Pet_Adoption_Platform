@@ -10,6 +10,13 @@ import { ArrowRightIcon } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@nextui-org/button";
 import { IPetData } from "@/app/(withDashboardLayout)/dashboard/admin/pet-management/components/PetsTable";
+import { userInfo } from "../../actions/auth";
+
+type IUserdata = {
+  email: any;
+  role: any;
+  id: any;
+} | null;
 
 const PetDetails = ({ petId }: { petId: string }) => {
   const router = useRouter();
@@ -29,6 +36,7 @@ const PetDetails = ({ petId }: { petId: string }) => {
     adoptionRequirements: [],
   });
   const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState<IUserdata>();
 
   useEffect(() => {
     async function fetchData() {
@@ -44,6 +52,8 @@ const PetDetails = ({ petId }: { petId: string }) => {
         );
         const data = await res.json();
         // console.log(data);
+        const userdata = await userInfo();
+        setUser(userdata as any);
         setPetData(data?.data);
       } catch (error) {
         console.error("Error fetching pet data:", error);
@@ -60,7 +70,7 @@ const PetDetails = ({ petId }: { petId: string }) => {
   }
 
   return (
-    <Card className="px-2 py-5 lg:p-8 md:p-6 mx-4">
+    <Card className="px-2 py-5 lg:p-8 md:p-6 mx-4 mb-5">
       <CardBody>
         {petData?.image && (
           <div className="lg:w-[500px] lg:h-[500px] md:w-[400px] md:h-[400px] mx-auto flex">
@@ -81,20 +91,22 @@ const PetDetails = ({ petId }: { petId: string }) => {
             </h2>
             <p className="mt-1">Species: {petData?.species}</p>
             <p className="mt-1">Breed: {petData?.breed}</p>
-            <p className="mt-2">Description: {petData?.description}</p>
+            <p className="mt-1">Description: {petData?.description}</p>
           </div>
           <div>
-            <Link href={`/dashboard/adoption-request/${petData?.id}`}>
-              <Button
-                color="primary"
-                variant="solid"
-                radius="sm"
-                className="hover:bg-primary hover:text-white"
-                size="md"
-              >
-                Adoption Request
-              </Button>
-            </Link>
+            {user && user?.role === "USER" && (
+              <Link href={`/dashboard/adoption-request/${petData?.id}`}>
+                <Button
+                  color="primary"
+                  variant="solid"
+                  radius="sm"
+                  className="hover:bg-primary hover:text-white"
+                  size="md"
+                >
+                  Adoption Request
+                </Button>
+              </Link>
+            )}
           </div>
         </div>
         <Divider className="my-4" />
