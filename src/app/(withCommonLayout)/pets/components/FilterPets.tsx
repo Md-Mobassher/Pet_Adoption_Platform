@@ -63,7 +63,7 @@ const FilterPets: React.FC<FilterPetsProps> = ({ onFilter }) => {
   };
 
   return (
-    <div className="pr-3 lg:w-1/5 w-full border-r lg:px-1 px-4">
+    <div className="pr-3 lg:w-1/5 w-full lg:px-1 px-4">
       <h2 className="text-2xl font-semibold lg:mb-4 my-2 ml-2">Filters</h2>
       <form ref={formRef} onSubmit={handleApplyFilters}>
         <div className="lg:mb-4 mb-3 grid lg:grid-cols-1 md:grid-cols-3 grid-cols-2 lg:gap-3 gap-2">

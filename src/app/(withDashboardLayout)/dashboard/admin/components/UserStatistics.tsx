@@ -38,9 +38,9 @@ const UserStatistics = () => {
     { name: "All Users", value: userData.allUsers },
     { name: "Admins", value: userData.totalAdmins },
     { name: "Users", value: userData.totalUsers },
-    { name: "Active Users", value: userData.totalActiveUsers },
-    { name: "Deleted Users", value: userData.totalDeletedUsers },
-    { name: "Deactivated Users", value: userData.totalDeactiveUsers },
+    { name: "Active", value: userData.totalActiveUsers },
+    { name: "Deleted", value: userData.totalDeletedUsers },
+    { name: "Deactive", value: userData.totalDeactiveUsers },
   ];
 
   return (

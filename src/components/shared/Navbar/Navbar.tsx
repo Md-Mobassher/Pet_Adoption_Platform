@@ -98,27 +98,6 @@ export default function NavigationBar({ user }: any) {
               </Link>
             </NavbarItem>
           )}
-          {user && user.role === "ADMIN" && (
-            <NavbarItem>
-              <Link
-                href="/dashboard/admin/my-profile"
-                className="hover:text-primary font-semibold p-2"
-              >
-                My Profile
-              </Link>
-            </NavbarItem>
-          )}
-
-          {user && user.role === "USER" && (
-            <NavbarItem>
-              <Link
-                href="/dashboard/my-profile"
-                className="hover:text-primary font-semibold p-2"
-              >
-                My Profile
-              </Link>
-            </NavbarItem>
-          )}
         </NavbarContent>
 
         <NavbarContent className="hidden lg:flex  gap-4" justify="end">

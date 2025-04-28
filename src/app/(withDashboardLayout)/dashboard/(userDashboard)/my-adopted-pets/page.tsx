@@ -27,7 +27,7 @@ const MyAdoptedPetsPage = async () => {
   const adoptedPets = await res.json();
 
   return (
-    <div className="my-4">
+    <div className="my-4 p-4">
       <div className="">
         <h3 className="font-bold text-inherit px-4 text-3xl text-center">
           My <span className="text-primary">Adopted Pets</span>

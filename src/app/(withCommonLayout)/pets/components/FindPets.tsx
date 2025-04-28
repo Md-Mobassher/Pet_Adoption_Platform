@@ -6,6 +6,7 @@ import FilterPets from "./FilterPets";
 import PetCard from "./PetCard";
 import LoadingPage from "@/app/loading";
 import PetContainer from "@/components/ui/PetContainer";
+import { Pagination } from "@nextui-org/pagination";
 
 export type TPet = {
   id: string;
@@ -43,16 +44,22 @@ const FindPets = () => {
   const [searchCriteria, setSearchCriteria] = useState<SearchCriteria>({});
   const [filterCriteria, setFilterCriteria] = useState<FilterCriteria>({});
   const [error, setError] = useState<string | null>(null);
-  const [loading, setLoading] = useState<boolean>(false); // Start as false
+  const [loading, setLoading] = useState<boolean>(false);
+
+  // Pagination state
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [totalPages, setTotalPages] = useState<number>(1);
+  const [limit, setLimit] = useState<number>(10);
 
   useEffect(() => {
     const fetchPets = async () => {
-      setLoading(true); // Start loading before fetching
-      setError(null); // Reset error state
+      setLoading(true);
+      setError(null);
 
       try {
         const params = new URLSearchParams();
 
+        // Append search and filter criteria
         Object.entries({ ...searchCriteria, ...filterCriteria }).forEach(
           ([key, value]) => {
             if (Array.isArray(value)) {
@@ -63,6 +70,10 @@ const FindPets = () => {
           }
         );
 
+        // Append pagination parameters
+        params.append("page", currentPage.toString());
+        params.append("limit", limit.toString());
+
         const res = await fetch(
           `${process.env.NEXT_PUBLIC_SERVER_URL}/pets?${params.toString()}`,
           {
@@ -71,9 +82,11 @@ const FindPets = () => {
         );
 
         const result = await res.json();
+        // console.log(result);
 
         if (result.data) {
           setPets(result.data);
+          setTotalPages(Math.ceil(result.meta.total / limit)); // Calculate total pages
         } else {
           setPets([]);
         }
@@ -86,14 +99,20 @@ const FindPets = () => {
     };
 
     fetchPets();
-  }, [searchCriteria, filterCriteria]);
+  }, [searchCriteria, filterCriteria, currentPage, limit]); // Fetch pets when criteria or page changes
 
   const handleSearch = (criteria: SearchCriteria) => {
     setSearchCriteria(criteria);
+    setCurrentPage(1); // Reset to first page on new search
   };
 
   const handleFilter = (criteria: FilterCriteria) => {
     setFilterCriteria(criteria);
+    setCurrentPage(1); // Reset to first page on new filter
+  };
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page); // Update current page
   };
 
   return (
@@ -108,14 +127,22 @@ const FindPets = () => {
             ) : (
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 p-3">
                 {pets.length > 0 ? (
-                  pets
-                    .slice(0, 9)
-                    .map((item) => <PetCard key={item.id} {...item} />)
+                  pets.map((item) => <PetCard key={item.id} {...item} />)
                 ) : (
                   <div className="text-center">
                     <p className="text-red-500 text-xl font-semibold">
                       No pets found
                     </p>
+                  </div>
+                )}
+                {pets.length > 0 && (
+                  <div className="pt-7">
+                    <Pagination
+                      showControls
+                      total={totalPages}
+                      initialPage={currentPage}
+                      onChange={handlePageChange} // Handle page change
+                    />
                   </div>
                 )}
               </div>
