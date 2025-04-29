@@ -64,7 +64,7 @@ export default function LoginForm() {
         formRef.current!.reset();
 
         // Redirect user to the originally requested page or homepage
-        const redirectTo = searchParams.get("redirectTo") || "/";
+        const redirectTo = searchParams.get("redirectTo") || "/dashboard";
         router.push(redirectTo);
       } else {
         toast.error(result.message, { id: 1, duration: 3000 });
